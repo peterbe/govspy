@@ -8,6 +8,7 @@ import pygments
 from pygments import lexers
 from pygments.formatters import HtmlFormatter
 
+import markdown
 import cssmin
 import click
 import jinja2
