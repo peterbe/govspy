@@ -1,0 +1,5 @@
+Jinja2==2.7.3
+Markdown==2.5.1
+Pygments==1.6
+click==3.3
+cssmin==0.2.0
