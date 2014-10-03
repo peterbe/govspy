@@ -1,6 +1,6 @@
 You can make a map of maps with:
 
-```
+```go
 elements : make(map[string]map[string]int)
 elements["H"] = map[string]int{
     "protons": 1,
