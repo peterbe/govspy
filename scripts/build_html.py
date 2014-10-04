@@ -4,6 +4,7 @@ import os
 import codecs
 from glob import glob
 
+from time import time
 import pygments
 from pygments import lexers
 from pygments.formatters import HtmlFormatter
@@ -17,11 +18,11 @@ import jinja2
 _here = os.path.dirname(__file__)
 template_dir = os.path.join(_here, 'templates')
 
+
 env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(template_dir),
     autoescape=True
 )
-
 
 class SnippetError(Exception):
     pass
@@ -77,9 +78,7 @@ def run(out):
     html = template.render(
         snippets=snippets,
         highlight_css=html_formatter.get_style_defs('.highlight'),
-        foundation_css=cssmin.cssmin(
-            env.get_template('foundation.css').render()
-        ),
+        foundation_css=env.get_template('foundation.min.css').render()
     )
     if out:
         codecs.open(out, 'w', 'utf-8').write(html)
