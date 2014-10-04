@@ -4,5 +4,5 @@ set -ex
 
 for filename in $(ls snippets/*/*.go)
 do
-  gofmt $filename > "$filename.new"
+  gofmt -w $filename
 done

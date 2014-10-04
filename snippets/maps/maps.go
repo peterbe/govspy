@@ -1,4 +1,5 @@
 package main
+
 import "fmt"
 
 func main() {
@@ -12,10 +13,10 @@ func main() {
 
 	// only do something with a element if it's in the map
 	if number, ok := elements["O"]; ok {
-		fmt.Println(number)  // won't be printed
+		fmt.Println(number) // won't be printed
 	}
 	if number, ok := elements["H"]; ok {
-		fmt.Println(number)  // 1
+		fmt.Println(number) // 1
 	}
 
 }
