@@ -54,11 +54,7 @@ def run(out):
             print snippet_dir, "has no .py code"
             continue
 
-        # print snippet_dir
-        # print go_code
-        # print py_code
         id = os.path.basename(snippet_dir)
-        # print id
         title = id.replace('_', ' ').title()
         readme = None
         for f in glob(os.path.join(snippet_dir, '*.md')):
@@ -92,11 +88,8 @@ def _dirs():
         for x in open('snippets/index.txt').read().splitlines()
         if not x.strip().startswith('#')
     ]
-    for d in os.listdir('snippets'):
-        fd = os.path.join('snippets', d)
-        if os.path.isdir(fd):
-            if d in indexed:
-                yield fd
+    for name in indexed:  # because this sort order is important
+        yield os.path.join('snippets', name)
 
 
 if __name__ == '__main__':
