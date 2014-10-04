@@ -9,7 +9,7 @@ package main
 /* This is the multi-line comment for the function main().
    To get access to this from the command line, run:
 
-     godoc go.go
+     godoc comments.go
 
 */
 
