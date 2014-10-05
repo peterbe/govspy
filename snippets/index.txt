@@ -5,5 +5,8 @@ multiline_strings
 lists
 maps
 booleans
-time_elapsed
 forloop
+range
+switch
+variadicfunctions
+time_elapsed

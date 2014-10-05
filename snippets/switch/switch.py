@@ -1,22 +1,25 @@
-symbol = raw_input()
-if symbol == "O":
+def input():
+    return int(raw_input())
+
+number = input()
+if number == 8:
     print "Oxygen"
-elif symbol == "H":
+elif number == 1:
     print "Hydrogen"
-elif symbol == "He":
+elif number == 2:
     print "Helium"
-elif symbol == "Na":
+elif number == 11:
     print "Sodium"
 else:
-    print "I have no idea what %s is" % symbol
+    print "I have no idea what %d is" % number
 
 
 # Alternative solution
-symbol = raw_input()
+number = input()
 db = {
-    "H": "Hydrogen",
-    "He": "Helium",
-    "O": "Oxygen",
-    "Na": "Sodium",
+    1: "Hydrogen",
+    2: "Helium",
+    8: "Oxygen",
+    11: "Sodium",
 }
-print db.get(symbol, "I have no idea what %s is" % symbol)
+print db.get(number, "I have no idea what %d is" % number)
