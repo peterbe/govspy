@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import re
 import codecs
 from glob import glob
 
@@ -13,16 +14,16 @@ import markdown
 import cssmin
 import click
 import jinja2
-# env = Environment(loader=PackageLoader('templates'))
-# env = Environment()
+
+
 _here = os.path.dirname(__file__)
 template_dir = os.path.join(_here, 'templates')
-
 
 env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(template_dir),
     autoescape=True
 )
+
 
 class SnippetError(Exception):
     pass
@@ -61,7 +62,7 @@ def run(out):
             if readme is not None:
                 raise SnippetError('%s contains multiple .md files')
             with codecs.open(f, 'r', 'utf-8') as reader:
-                readme = markdown.markdown(reader.read())
+                readme = special_markdown(reader.read())
         snippets.append({
             'id': id,
             'title': title,
@@ -81,6 +82,51 @@ def run(out):
     else:
         print html
 
+
+_codesyntax_regex = re.compile('```(python|go)')
+_markdown_pre_regex = re.compile('```([^`]+)```')
+
+def special_markdown(text):
+
+    def _get_lexer(codesyntax):
+        if codesyntax == 'python':
+            return lexers.PythonLexer()
+        elif codesyntax == 'go':
+            return lexers.GoLexer()
+        elif codesyntax:
+            raise NotImplementedError(codesyntax)
+        else:
+            return lexers.TextLexer()
+
+    def matcher(match):
+        found = match.group()
+        try:
+            codesyntax = _codesyntax_regex.findall(found)[0]
+        except IndexError:
+            codesyntax = None
+        found = _codesyntax_regex.sub('```', found)
+        if codesyntax:
+            def highlighter(m):
+                lexer = _get_lexer(codesyntax)
+                code = m.group().replace('```', '')
+                return pygments.highlight(code, lexer, HtmlFormatter())
+            found = _markdown_pre_regex.sub(highlighter, found)
+        found = found.replace('```', '<pre>', 1)
+        found = found.replace('```', '</pre>')
+        return found
+
+    text = _markdown_pre_regex.sub(matcher, text)
+
+    # html = markdown.markdown(gfm(text))
+    html = markdown.markdown(text)
+    return html
+
+
+def xspecial_markdown(text):
+    # regular markdown but format the ```<syntax>  blocks differently
+    md = markdown.markdown(text)
+
+    return md
 
 def _dirs():
     indexed = [

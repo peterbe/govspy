@@ -11,10 +11,14 @@
 <style>
 {{ highlight_css | safe }}
 .highlight { border-radius: 4px; padding: 2px; }
-.highlight span { font-family: monospace; }
+.highlight span { font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace; }
 article { margin-bottom: 60px; }
 article .codes { overflow: auto; background-color:#f8f8f8; }
-article .code {
+
+article .codes {
+    border: 1px solid #efefef;
+}
+article .codes .code {
     float: left;
     width: 48%;
 }
