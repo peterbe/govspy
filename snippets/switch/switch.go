@@ -36,7 +36,7 @@ func main() {
 	fmt.Scanln(&number_string)
 	db := map[int]string{
 		1:  "Hydrogen",
-		2: "Helium",
+		2:  "Helium",
 		8:  "Oxygen",
 		11: "Sodium",
 	}

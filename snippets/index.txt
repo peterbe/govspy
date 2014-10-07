@@ -8,5 +8,6 @@ booleans
 forloop
 range
 switch
-variadicfunctions
+variadic_functions
 time_elapsed
+closure_functions
