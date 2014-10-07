@@ -6,44 +6,44 @@
 <title>Golang vs. Python</title>
 <meta name="description" content="Learning Go by comparing how you'd do it in Python"/>
 <style>
-{{ foundation_css | safe }}
+{{ bootstrap_css | safe }}
 </style>
 <style>
 {{ highlight_css | safe }}
-.highlight { border-radius: 4px; padding: 2px; }
-.highlight span { font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace; }
-article { margin-bottom: 60px; }
-article .codes { overflow: auto; background-color:#f8f8f8; }
-
-article .codes {
-    border: 1px solid #efefef;
+article h3 { margin-top: 50px; }
+a.top { float: right; font-size: 80%; }
+div.toc { margin: 50px; }
+h1 span { font-size: 50%; color: #666; }
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
 }
-article .codes .code {
-    float: left;
+.codes .code {
     width: 48%;
 }
-a.top { float: right; font-size: 80%; }
+.codes .code.python {
+    float: right;
+}
+.codes .code.go {
+    float: left;
+}
 </style>
 </head>
 <body>
 
-<div class="row">
-  <div class="large-12 columns">
-    <div class="nav-bar right">
-      <ul class="button-group">
-        <li><a href="#" class="button">Link 1</a></li>
-        <li><a href="#" class="button">Link 2</a></li>
-        <li><a href="#" class="button">Link 3</a></li>
-        <li><a href="#" class="button">Link 4</a></li>
-      </ul>
-    </div>
-    <h1>Go vs. Python<br><small>Learning Go by comparing how you'd do it in Python</small></h1>
-    <hr/>
-  </div>
-</div>
 
-<div class="row">
-  <div class="large-12 columns">
+<div class="container theme-showcase" role="main">
+
+  <h1>Go vs. Python<br>
+    <span>
+    Learning <a href="https://golang.org/" title="The Go Programming Language">Go</a>
+    by comparing how you'd do it in
+    <a href="https://www.python.org/">Python</a>
+    </span>
+  </h1>
+
+  <div class="toc">
     <h4>Table of Contents</h4>
     <ul>
     {% for snippet in snippets %}
@@ -51,14 +51,10 @@ a.top { float: right; font-size: 80%; }
     {% endfor %}
     </ul>
   </div>
-</div>
 
-
-<div class="row">
-
-  <div class="large-12 columns" role="content">
+  <div class="articles" role="content">
     {% for snippet in snippets %}
-    <article id="{{ snippet.id }}">
+    <article id="{{ snippet.id }}" class="group">
 
       <a href="#top" class="top">Top</a>
       <h3>{{ snippet.title }}</h3>
@@ -67,11 +63,11 @@ a.top { float: right; font-size: 80%; }
       {% endif %}
       <div class="codes">
         <div class="code python">
-          <h6>Python</h6>
+          <h4>Python</h4>
           {{ snippet.py_code | safe }}
         </div>
         <div class="code go">
-          <h6>Go</h6>
+          <h4>Go</h4>
           {{ snippet.go_code | safe }}
         </div>
       </div>
@@ -81,27 +77,14 @@ a.top { float: right; font-size: 80%; }
 
   </div>
 
+  <p>&copy; <a href="http://www.peterbe.com">peterbe</a> and anybody helping
+    out on <a href="https://github.com/peterbe/govspy">GitHub</a></p>
 </div>
 
 
-<footer class="row">
-<div class="large-12 columns">
-<hr/>
-<div class="row">
-<div class="large-6 columns">
-<p>&copy; Copyright no one at all. Go to town.</p>
-</div>
-<div class="large-6 columns">
-<ul class="inline-list right">
-<li><a href="#">Link 1</a></li>
-<li><a href="#">Link 2</a></li>
-<li><a href="#">Link 3</a></li>
-<li><a href="#">Link 4</a></li>
-</ul>
-</div>
-</div>
-</div>
-</footer>
+
+
+
 
 <script>
 (function() {

@@ -75,7 +75,7 @@ def run(out):
     html = template.render(
         snippets=snippets,
         highlight_css=html_formatter.get_style_defs('.highlight'),
-        foundation_css=env.get_template('foundation.min.css').render()
+        bootstrap_css=env.get_template('bootstrap.min.css').render()
     )
     if out:
         codecs.open(out, 'w', 'utf-8').write(html)
