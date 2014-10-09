@@ -11,3 +11,5 @@ switch
 variadic_functions
 time_elapsed
 closure_functions
+defer
+panic_recover
