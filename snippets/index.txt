@@ -14,3 +14,4 @@ closure_functions
 defer
 panic_recover
 mutables
+structs
