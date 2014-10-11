@@ -1,5 +1,6 @@
 from __future__ import division
 
+
 def average(*numbers):
     return sum(numbers) / len(numbers)
 

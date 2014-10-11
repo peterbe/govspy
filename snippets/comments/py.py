@@ -2,6 +2,7 @@
 
 # This is a inline comment
 
+
 class Class(object):
     """This is the doc string for the class"""
 
