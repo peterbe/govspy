@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 for filename in $(ls snippets/*/*.go)
 do
