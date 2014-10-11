@@ -14,7 +14,8 @@ func distance(point1 Point, point2 Point) float64 {
 	return math.Sqrt(point1.x*point2.x + point1.y*point2.y)
 }
 
-// since structs get automatically copied, it's better to pass it as pointer
+// Since structs get automatically copied,
+// it's better to pass it as pointer.
 func distance_better(point1 *Point, point2 *Point) float64 {
 	return math.Sqrt(point1.x*point2.x + point1.y*point2.y)
 }
