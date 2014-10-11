@@ -3,8 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
-	)
-
+)
 
 func upone_list(thing []string, index int) {
 	thing[index] = strings.ToUpper(thing[index])
