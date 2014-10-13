@@ -64,11 +64,15 @@ h1 span { font-size: 50%; color: #666; }
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-          {{ snippet.py_code | safe }}
+          {% for filename, code in snippet.py_codes %}
+            {{ code | safe }}
+          {% endfor %}
         </div>
         <div class="code go">
           <h4>Go</h4>
-          {{ snippet.go_code | safe }}
+          {% for filename, code in snippet.go_codes %}
+            {{ code | safe }}
+          {% endfor %}
         </div>
       </div>
     </article>

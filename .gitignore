@@ -1,2 +1,4 @@
 *.go.new
 /index.html
+snippets/markdownserver/node_modules/
+snippets/markdownserver/venv/

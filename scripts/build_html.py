@@ -38,20 +38,23 @@ def run(out):
     go_lexer = lexers.GoLexer()
     html_formatter = HtmlFormatter()
 
+
     for snippet_dir in _dirs():
-        try:
-            go_code = codecs.open(
-                glob(os.path.join(snippet_dir, '*.go'))[0], 'r', 'utf8'
-            ).read()
-        except IndexError:
+        go_codes = []
+        for f in glob(os.path.join(snippet_dir, '*.go')):
+            go_codes.append(
+                (f, codecs.open(f, 'r', 'utf8').read())
+            )
+        if not go_codes:
             print snippet_dir, "has no .go code"
             continue
-        try:
-            py_code = codecs.open(
-                glob(os.path.join(snippet_dir, '*.py'))[0], 'r', 'utf8'
-            ).read()
 
-        except IndexError:
+        py_codes = []
+        for f in glob(os.path.join(snippet_dir, '*.py')):
+            py_codes.append(
+                (f, codecs.open(f, 'r', 'utf8').read())
+            )
+        if not py_codes:
             print snippet_dir, "has no .py code"
             continue
 
@@ -67,8 +70,20 @@ def run(out):
             'id': id,
             'title': title,
             'readme': readme,
-            'go_code': pygments.highlight(go_code, go_lexer, html_formatter),
-            'py_code': pygments.highlight(py_code, py_lexer, html_formatter),
+            'go_codes': [
+                (
+                    filename,
+                    pygments.highlight(code, go_lexer, html_formatter)
+                )
+                for filename, code in go_codes
+            ],
+            'py_codes': [
+                (
+                    filename,
+                    pygments.highlight(code, py_lexer, html_formatter)
+                )
+                for filename, code in py_codes
+            ],
         })
 
     template = env.get_template('build.html')
