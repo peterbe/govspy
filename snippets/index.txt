@@ -16,4 +16,5 @@ panic_recover
 mutables
 structs
 methods
+goroutines
 markdownserver
