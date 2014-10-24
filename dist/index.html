@@ -76,6 +76,9 @@
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
 article h3 { margin-top: 50px; }
+article h3 a { opacity: 0.1; font-size: 50%; }
+article h3 a:visited { opacity: 1.0; }
+article h3 a:hover { opacity: 1.0; }
 a.top { float: right; font-size: 80%; }
 div.toc { margin: 50px; }
 h1 span { font-size: 50%; color: #666; }
@@ -160,7 +163,11 @@ h1 span { font-size: 50%; color: #666; }
     <article id="hello_world" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Hello World</h3>
+      <h3>Hello World
+        <a href="#hello_world" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <div class="codes">
         <div class="code python">
@@ -192,7 +199,11 @@ h1 span { font-size: 50%; color: #666; }
     <article id="print" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Print</h3>
+      <h3>Print
+        <a href="#print" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <div class="codes">
         <div class="code python">
@@ -229,7 +240,11 @@ h1 span { font-size: 50%; color: #666; }
     <article id="comments" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Comments</h3>
+      <h3>Comments
+        <a href="#comments" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <div class="codes">
         <div class="code python">
@@ -281,7 +296,11 @@ h1 span { font-size: 50%; color: #666; }
     <article id="multiline_strings" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Multiline Strings</h3>
+      <h3>Multiline Strings
+        <a href="#multiline_strings" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <div class="codes">
         <div class="code python">
@@ -327,7 +346,11 @@ h1 span { font-size: 50%; color: #666; }
     <article id="lists" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Lists</h3>
+      <h3>Lists
+        <a href="#lists" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <p>A <code>slice</code> is a segment of an array whose length can change.</p>
 <p>The major difference between an <code>array</code> and a <code>slice</code> is that with the
@@ -400,7 +423,11 @@ incrementally add things to it.</p>
     <article id="maps" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Maps</h3>
+      <h3>Maps
+        <a href="#maps" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <p>You can make a map of maps with:</p>
 <div class="highlight"><pre><span class="nx">elements</span> <span class="p">:</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
@@ -469,7 +496,11 @@ incrementally add things to it.</p>
     <article id="booleans" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Booleans</h3>
+      <h3>Booleans
+        <a href="#booleans" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <p>Go doesn't have a quick way to evaluate if something is
 <a href="http://en.wikipedia.org/wiki/Truthiness">"truthy"</a>.
@@ -540,7 +571,11 @@ every type:</p>
     <article id="forloop" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Forloop</h3>
+      <h3>Forloop
+        <a href="#forloop" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <p>Go has only one type of loop and that's the <code>for</code> loop.</p>
       
@@ -591,7 +626,11 @@ every type:</p>
     <article id="range" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Range</h3>
+      <h3>Range
+        <a href="#range" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <div class="codes">
         <div class="code python">
@@ -638,7 +677,11 @@ every type:</p>
     <article id="switch" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Switch</h3>
+      <h3>Switch
+        <a href="#switch" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <div class="codes">
         <div class="code python">
@@ -737,7 +780,11 @@ every type:</p>
     <article id="variadic_functions" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Variadic Functions</h3>
+      <h3>Variadic Functions
+        <a href="#variadic_functions" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <p>In Python you can accept varying types with <code>somefunction(*args)</code> but
 this is not possible with Go. You can however, make the type an
@@ -787,7 +834,11 @@ interface thus being able to get much more rich type structs.</p>
     <article id="time_elapsed" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Time Elapsed</h3>
+      <h3>Time Elapsed
+        <a href="#time_elapsed" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <div class="codes">
         <div class="code python">
@@ -826,7 +877,11 @@ interface thus being able to get much more rich type structs.</p>
     <article id="closure_functions" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Closure Functions</h3>
+      <h3>Closure Functions
+        <a href="#closure_functions" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <p>Note in the Python example you can access <code>number</code> in the inner function
 but you can't change it. Suppose you wanted to do this:</p>
@@ -891,7 +946,11 @@ would be tied to the inner scope of the <code>increment</code> function.</p>
     <article id="defer" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Defer</h3>
+      <h3>Defer
+        <a href="#defer" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <p>The cool thing about <code>defer</code> in Go is that you can type that near
 where it matters and it's then clear to the reader that it will do
@@ -939,7 +998,11 @@ between the <code>try:</code> and the <code>finally:</code> block short.</p>
     <article id="panic_recover" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Panic Recover</h3>
+      <h3>Panic Recover
+        <a href="#panic_recover" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <div class="codes">
         <div class="code python">
@@ -980,7 +1043,11 @@ between the <code>try:</code> and the <code>finally:</code> block short.</p>
     <article id="mutables" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Mutables</h3>
+      <h3>Mutables
+        <a href="#mutables" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <p>Python doesn't have the concept of pointers. Go does. But with Go you
 can send an array or a map into a function, have it modified there
@@ -1048,7 +1115,11 @@ without being returned and it gets changed.</p>
     <article id="structs" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Structs</h3>
+      <h3>Structs
+        <a href="#structs" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <div class="codes">
         <div class="code python">
@@ -1117,7 +1188,11 @@ without being returned and it gets changed.</p>
     <article id="methods" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Methods</h3>
+      <h3>Methods
+        <a href="#methods" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <div class="codes">
         <div class="code python">
@@ -1186,7 +1261,11 @@ without being returned and it gets changed.</p>
     <article id="goroutines" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Goroutines</h3>
+      <h3>Goroutines
+        <a href="#goroutines" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <p>Note that when you run these, the numbers come in in different order
 between runs.</p>
@@ -1274,7 +1353,11 @@ finished.</p>
     <article id="markdownserver" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>Markdownserver</h3>
+      <h3>Markdownserver
+        <a href="#markdownserver" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       
       <p>Using simple ab (with concurrency):</p>
 <pre><code>$ ab -n 10000 -c 10 http://localhost:XXXX/markdown?body=THis+%2Ais%2A+a+string

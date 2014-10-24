@@ -11,6 +11,9 @@
 <style>
 {{ highlight_css | safe }}
 article h3 { margin-top: 50px; }
+article h3 a { opacity: 0.1; font-size: 50%; }
+article h3 a:visited { opacity: 1.0; }
+article h3 a:hover { opacity: 1.0; }
 a.top { float: right; font-size: 80%; }
 div.toc { margin: 50px; }
 h1 span { font-size: 50%; color: #666; }
@@ -57,7 +60,11 @@ h1 span { font-size: 50%; color: #666; }
     <article id="{{ snippet.id }}" class="group">
 
       <a href="#top" class="top">Top</a>
-      <h3>{{ snippet.title }}</h3>
+      <h3>{{ snippet.title }}
+        <a href="#{{ snippet.id }}" title="Permalink">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+      </h3>
       {% if snippet.readme %}
       {{ snippet.readme | safe }}
       {% endif %}
