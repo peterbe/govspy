@@ -30,14 +30,13 @@ class SnippetError(Exception):
 
 
 @click.command()
-@click.option('--out', '-o', help="defaults to stdout")
+@click.option('--out', '-o', help="defaults to stdout", default='dist/index.html')
 def run(out):
     snippets = []
 
     py_lexer = lexers.PythonLexer()
     go_lexer = lexers.GoLexer()
     html_formatter = HtmlFormatter()
-
 
     for snippet_dir in _dirs():
         go_codes = []
