@@ -11,9 +11,9 @@
 <style>
 {{ highlight_css | safe }}
 article h3 { margin-top: 50px; }
-article h3 a { opacity: 0.1; font-size: 50%; }
+article h3 a { opacity: 0.1; font-size: 70%; }
 article h3 a:visited { opacity: 1.0; }
-article h3 a:hover { opacity: 1.0; }
+article h3 a:hover { opacity: 1.0; text-decoration: none; }
 a.top { float: right; font-size: 80%; }
 div.toc { margin: 50px; }
 h1 span { font-size: 50%; color: #666; }
@@ -80,8 +80,8 @@ and (max-width : 320px) {
 
       <a href="#top" class="top">Top</a>
       <h3>{{ snippet.title }}
-        <a href="#{{ snippet.id }}" title="Permalink">
-          <span class="glyphicon glyphicon-link"></span>
+        <a href="#{{ snippet.id }}" title="Permalink to this snippet">
+          &#x1f517;
         </a>
       </h3>
       {% if snippet.readme %}
