@@ -22,14 +22,27 @@ h1 span { font-size: 50%; color: #666; }
   display: table;
   clear: both;
 }
-.codes .code {
-    width: 48%;
+
+@media only screen
+and (min-width : 1224px) {
+  .codes .code {
+      width: 48%;
+  }
+  .codes .code.python {
+      float: right;
+  }
+  .codes .code.go {
+      float: left;
+  }
+
 }
-.codes .code.python {
-    float: right;
-}
-.codes .code.go {
-    float: left;
+
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 320px) {
+  .highlight pre {
+    font-size: 10px;
+  }
 }
 </style>
 </head>
