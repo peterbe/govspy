@@ -174,6 +174,8 @@ and (max-width : 320px) {
     
       <li><a href="#markdownserver">Markdownserver</a></li>
     
+      <li><a href="#orm">ORM (Object Relational Mapper)</a></li>
+    
     </ul>
   </div>
 
@@ -1493,6 +1495,441 @@ $ curl http://localhost:3000/markdown?body=THis+%2Ais%2A+a+string
 	<span class="nx">markdown</span> <span class="o">:=</span> <span class="nx">blackfriday</span><span class="p">.</span><span class="nx">MarkdownCommon</span><span class="p">(</span>
 		<span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">FormValue</span><span class="p">(</span><span class="s">&quot;body&quot;</span><span class="p">)))</span>
 	<span class="nx">rw</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">markdown</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+          
+        </div>
+      </div>
+    </article>
+    <hr>
+    
+    <article id="orm" class="group">
+
+      <a href="#top" class="top">Top</a>
+      <h3>ORM (Object Relational Mapper)
+        <a href="#orm" title="Permalink to this snippet">
+          &#x1f517;
+        </a>
+      </h3>
+      
+      <p>This is a comparison between
+<a href="https://github.com/coopernurse/gorp">gorp</a> and
+<a href="http://www.sqlalchemy.org/">sqlalchemy</a>.</p>
+<p>Using <code>pq</code> and <code>psycopg2</code> it creates a bunch of ORM instance objects,
+then edits them all one by one and then deletes them all. This example
+assumes PostgreSQL and that the table already exists.</p>
+<p>It creates X number of "talks" which has the following column types:</p>
+<ol>
+<li>id serial integer</li>
+<li>topic varchar(200)</li>
+<li>when timestamp</li>
+<li>tags array of text</li>
+<li>duration real</li>
+</ol>
+<p>Then lastly it measures how long it takes to do all the inserts, all the
+updates and all the deletes.</p>
+<p>When running these for <strong>10,000 iterations</strong> on my computer I get the
+following outputs:</p>
+<pre><code>$ python orm.py
+insert 3.09894585609
+edit 30.3197979927
+delete 18.6974749565
+TOTAL 52.1162188053
+
+$ go run orm.go
+insert 2.542336905s
+edit 10.28062312s
+delete 6.851942699s
+TOTAL 19.674902724s
+</code></pre>
+      
+      <div class="codes">
+        <div class="code python">
+          <h4>Python</h4>
+          
+            <div class="highlight"><pre><span class="c"># *- coding: utf-8 -*</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.dialects</span> <span class="kn">import</span> <span class="n">postgresql</span>
+
+<span class="n">HOW_MANY</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c"># import logging</span>
+<span class="c"># logging.basicConfig()</span>
+<span class="c"># logger = logging.getLogger(&#39;sqlalchemy.engine&#39;)</span>
+<span class="c"># logger.setLevel(logging.INFO)</span>
+
+<span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Talk</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;talks&#39;</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">(</span><span class="s">&#39;talks_id_seq&#39;</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">topic</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+    <span class="n">when</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">)</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">postgresql</span><span class="o">.</span><span class="n">ARRAY</span><span class="p">(</span><span class="n">String</span><span class="p">))</span>
+    <span class="n">duration</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_random_topic</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">((</span>
+        <span class="s">u&#39;No talks added yet&#39;</span><span class="p">,</span>
+        <span class="s">u&quot;I&#39;m working on a branch of django-mongokit that I &quot;</span>
+        <span class="s">&quot;thought you&#39;d like to know about.&quot;</span><span class="p">,</span>
+        <span class="s">u&#39;I want to learn Gaelic.&#39;</span><span class="p">,</span>
+        <span class="s">u&quot;I&#39;m well, thank you.&quot;</span><span class="p">,</span>
+        <span class="s">u&#39; (Kaw uhn KEU-ra shin KAW-la root uh CHOO-nik mee uhn-royer?)&#39;</span><span class="p">,</span>
+        <span class="s">u&#39;Chah beh shin KEU-ra, sheh shin moe CHYEH-luh uh vah EEN-tchuh!&#39;</span><span class="p">,</span>
+        <span class="s">u&#39;STUH LUH-oom BRISS-kaht-chun goo MAWR&#39;</span><span class="p">,</span>
+        <span class="s">u&quot;Suas Leis a&#39; Ghàidhlig! Up with Gaelic!&quot;</span><span class="p">,</span>
+        <span class="s">u&quot;Tha mi ag iarraidh briosgaid!&quot;</span><span class="p">,</span>
+    <span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">_random_when</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2010</span><span class="p">),</span>
+                             <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
+                             <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span>
+                             <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_random_tags</span><span class="p">():</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s">u&#39;one&#39;</span><span class="p">,</span> <span class="s">u&#39;two&#39;</span><span class="p">,</span> <span class="s">u&#39;three&#39;</span><span class="p">,</span> <span class="s">u&#39;four&#39;</span><span class="p">,</span> <span class="s">u&#39;five&#39;</span><span class="p">,</span> <span class="s">u&#39;six&#39;</span><span class="p">,</span>
+            <span class="s">u&#39;seven&#39;</span><span class="p">,</span> <span class="s">u&#39;eight&#39;</span><span class="p">,</span> <span class="s">u&#39;nine&#39;</span><span class="p">,</span> <span class="s">u&#39;ten&#39;</span><span class="p">]</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tags</span><span class="p">[:</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+
+
+<span class="k">def</span> <span class="nf">_random_duration</span><span class="p">():</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+    <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span>
+        <span class="s">&#39;postgresql://peterbe:test123@localhost/fastestdb&#39;</span><span class="p">,</span>
+        <span class="n">echo</span><span class="o">=</span><span class="bp">False</span>
+    <span class="p">)</span>
+
+    <span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+
+    <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Talk</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="c"># CREATE ALL</span>
+    <span class="n">talks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">HOW_MANY</span><span class="p">):</span>
+        <span class="n">talk</span> <span class="o">=</span> <span class="n">Talk</span><span class="p">(</span>
+            <span class="n">topic</span><span class="o">=</span><span class="n">_random_topic</span><span class="p">(),</span>
+            <span class="n">when</span><span class="o">=</span><span class="n">_random_when</span><span class="p">(),</span>
+            <span class="n">duration</span><span class="o">=</span><span class="n">_random_duration</span><span class="p">(),</span>
+            <span class="n">tags</span><span class="o">=</span><span class="n">_random_tags</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">talk</span><span class="p">)</span>
+        <span class="n">talks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">talk</span><span class="p">)</span>
+
+    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="c"># EDIT ALL</span>
+
+    <span class="k">for</span> <span class="n">talk</span> <span class="ow">in</span> <span class="n">talks</span><span class="p">:</span>
+        <span class="n">talk</span><span class="o">.</span><span class="n">topic</span> <span class="o">+=</span> <span class="s">&quot;extra&quot;</span>
+        <span class="n">talk</span><span class="o">.</span><span class="n">duration</span> <span class="o">+=</span> <span class="mf">1.0</span>
+        <span class="n">talk</span><span class="o">.</span><span class="n">when</span> <span class="o">+=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">talk</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;extra&quot;</span><span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">talk</span><span class="p">)</span>
+
+    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="c"># DELETE EACH</span>
+    <span class="k">for</span> <span class="n">talk</span> <span class="ow">in</span> <span class="n">talks</span><span class="p">:</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">talk</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="n">t3</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="k">print</span> <span class="s">&quot;insert&quot;</span><span class="p">,</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span>
+    <span class="k">print</span> <span class="s">&quot;edit&quot;</span><span class="p">,</span> <span class="n">t2</span> <span class="o">-</span> <span class="n">t1</span>
+    <span class="k">print</span> <span class="s">&quot;delete&quot;</span><span class="p">,</span> <span class="n">t3</span> <span class="o">-</span> <span class="n">t2</span>
+    <span class="k">print</span> <span class="s">&quot;TOTAL&quot;</span><span class="p">,</span> <span class="n">t3</span> <span class="o">-</span> <span class="n">t0</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">run</span><span class="p">()</span>
+</pre></div>
+
+          
+        </div>
+        <div class="code go">
+          <h4>Go</h4>
+          
+            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&quot;database/sql&quot;</span>
+	<span class="s">&quot;errors&quot;</span>
+	<span class="s">&quot;fmt&quot;</span>
+	<span class="s">&quot;github.com/coopernurse/gorp&quot;</span>
+	<span class="nx">_</span> <span class="s">&quot;github.com/lib/pq&quot;</span>
+	<span class="s">&quot;log&quot;</span>
+	<span class="s">&quot;math/rand&quot;</span>
+	<span class="c1">// &quot;os&quot;</span>
+	<span class="s">&quot;regexp&quot;</span>
+	<span class="s">&quot;strings&quot;</span>
+	<span class="s">&quot;time&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">type</span> <span class="nx">StringSlice</span> <span class="p">[]</span><span class="kt">string</span>
+
+<span class="c1">// Implements sql.Scanner for the String slice type</span>
+<span class="c1">// Scanners take the database value (in this case as a byte slice)</span>
+<span class="c1">// and sets the value of the type.  Here we cast to a string and</span>
+<span class="c1">// do a regexp based parse</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">StringSlice</span><span class="p">)</span> <span class="nx">Scan</span><span class="p">(</span><span class="nx">src</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">error</span> <span class="p">{</span>
+	<span class="nx">asBytes</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">src</span><span class="p">.([]</span><span class="kt">byte</span><span class="p">)</span>
+	<span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nb">error</span><span class="p">(</span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;Scan source was not []bytes&quot;</span><span class="p">))</span>
+	<span class="p">}</span>
+
+	<span class="nx">asString</span> <span class="o">:=</span> <span class="nb">string</span><span class="p">(</span><span class="nx">asBytes</span><span class="p">)</span>
+	<span class="nx">parsed</span> <span class="o">:=</span> <span class="nx">parseArray</span><span class="p">(</span><span class="nx">asString</span><span class="p">)</span>
+	<span class="p">(</span><span class="o">*</span><span class="nx">s</span><span class="p">)</span> <span class="p">=</span> <span class="nx">StringSlice</span><span class="p">(</span><span class="nx">parsed</span><span class="p">)</span>
+
+	<span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">ToArray</span><span class="p">(</span><span class="nx">str</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">L</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+	<span class="nx">out</span> <span class="o">:=</span> <span class="s">&quot;{&quot;</span>
+	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">s</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">str</span> <span class="p">{</span>
+		<span class="nx">out</span> <span class="o">+=</span> <span class="s">&quot;\&quot;&quot;</span> <span class="o">+</span> <span class="nx">s</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span>
+		<span class="k">if</span> <span class="nx">i</span><span class="o">+</span><span class="mi">1</span> <span class="p">&lt;</span> <span class="nx">L</span> <span class="p">{</span>
+			<span class="nx">out</span> <span class="o">+=</span> <span class="s">&quot;,&quot;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="nx">out</span> <span class="o">+=</span> <span class="s">&quot;}&quot;</span>
+
+	<span class="k">return</span> <span class="nx">out</span>
+<span class="p">}</span>
+
+<span class="c1">// construct a regexp to extract values:</span>
+<span class="kd">var</span> <span class="p">(</span>
+	<span class="c1">// unquoted array values must not contain: (&quot; , \ { } whitespace NULL)</span>
+	<span class="c1">// and must be at least one char</span>
+	<span class="nx">unquotedChar</span>  <span class="p">=</span> <span class="s">`[^&quot;,\\{}\s(NULL)]`</span>
+	<span class="nx">unquotedValue</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;(%s)+&quot;</span><span class="p">,</span> <span class="nx">unquotedChar</span><span class="p">)</span>
+
+	<span class="c1">// quoted array values are surrounded by double quotes, can be any</span>
+	<span class="c1">// character except &quot; or \, which must be backslash escaped:</span>
+	<span class="nx">quotedChar</span>  <span class="p">=</span> <span class="s">`[^&quot;\\]|\\&quot;|\\\\`</span>
+	<span class="nx">quotedValue</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;\&quot;(%s)*\&quot;&quot;</span><span class="p">,</span> <span class="nx">quotedChar</span><span class="p">)</span>
+
+	<span class="c1">// an array value may be either quoted or unquoted:</span>
+	<span class="nx">arrayValue</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;(?P&lt;value&gt;(%s|%s))&quot;</span><span class="p">,</span> <span class="nx">unquotedValue</span><span class="p">,</span> <span class="nx">quotedValue</span><span class="p">)</span>
+
+	<span class="c1">// Array values are separated with a comma IF there is more than one value:</span>
+	<span class="nx">arrayExp</span> <span class="p">=</span> <span class="nx">regexp</span><span class="p">.</span><span class="nx">MustCompile</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;((%s)(,)?)&quot;</span><span class="p">,</span> <span class="nx">arrayValue</span><span class="p">))</span>
+
+	<span class="nx">valueIndex</span> <span class="kt">int</span>
+<span class="p">)</span>
+
+<span class="c1">// Find the index of the &#39;value&#39; named expression</span>
+<span class="kd">func</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">subexp</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">arrayExp</span><span class="p">.</span><span class="nx">SubexpNames</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">subexp</span> <span class="o">==</span> <span class="s">&quot;value&quot;</span> <span class="p">{</span>
+			<span class="nx">valueIndex</span> <span class="p">=</span> <span class="nx">i</span>
+			<span class="k">break</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Parse the output string from the array type.</span>
+<span class="c1">// Regex used: (((?P&lt;value&gt;(([^&quot;,\\{}\s(NULL)])+|&quot;([^&quot;\\]|\\&quot;|\\\\)*&quot;)))(,)?)</span>
+<span class="kd">func</span> <span class="nx">parseArray</span><span class="p">(</span><span class="nx">array</span> <span class="kt">string</span><span class="p">)</span> <span class="p">[]</span><span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">results</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">string</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="nx">matches</span> <span class="o">:=</span> <span class="nx">arrayExp</span><span class="p">.</span><span class="nx">FindAllStringSubmatch</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">match</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">matches</span> <span class="p">{</span>
+		<span class="nx">s</span> <span class="o">:=</span> <span class="nx">match</span><span class="p">[</span><span class="nx">valueIndex</span><span class="p">]</span>
+		<span class="c1">// the string _might_ be wrapped in quotes, so trim them:</span>
+		<span class="nx">s</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Trim</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">)</span>
+		<span class="nx">results</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">results</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">results</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">HOW_MANY</span> <span class="p">=</span> <span class="mi">1000</span>
+
+<span class="kd">func</span> <span class="nx">random_topic</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">topics</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
+		<span class="s">&quot;No talks added yet&quot;</span><span class="p">,</span>
+		<span class="s">&quot;I&#39;m working on a branch of django-mongokit that I thought you&#39;d like to know about.&quot;</span><span class="p">,</span>
+		<span class="s">&quot;I want to learn Gaelic.&quot;</span><span class="p">,</span>
+		<span class="s">&quot;I&#39;m well, thank you.&quot;</span><span class="p">,</span>
+		<span class="s">&quot;(Kaw uhn KEU-ra shin KAW-la root uh CHOO-nik mee uhn-royer?)&quot;</span><span class="p">,</span>
+		<span class="s">&quot;Chah beh shin KEU-ra, sheh shin moe CHYEH-luh uh vah EEN-tchuh!&quot;</span><span class="p">,</span>
+		<span class="s">&quot;STUH LUH-oom BRISS-kaht-chun goo MAWR&quot;</span><span class="p">,</span>
+		<span class="s">&quot;Suas Leis a&#39; Ghàidhlig! Up with Gaelic!&quot;</span><span class="p">,</span>
+		<span class="s">&quot;Tha mi ag iarraidh briosgaid!&quot;</span><span class="p">,</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="nx">topics</span><span class="p">[</span><span class="nx">rand</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">topics</span><span class="p">))]</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">random_when</span><span class="p">()</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Date</span><span class="p">(</span>
+		<span class="mi">2000</span><span class="o">+</span><span class="nx">rand</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+		<span class="nx">time</span><span class="p">.</span><span class="nx">November</span><span class="p">,</span>
+		<span class="nx">rand</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span>
+		<span class="nx">rand</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">28</span><span class="p">),</span>
+		<span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">UTC</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">random_tags</span><span class="p">()</span> <span class="p">[]</span><span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">tags</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
+		<span class="s">&quot;one&quot;</span><span class="p">,</span>
+		<span class="s">&quot;two&quot;</span><span class="p">,</span>
+		<span class="s">&quot;three&quot;</span><span class="p">,</span>
+		<span class="s">&quot;four&quot;</span><span class="p">,</span>
+		<span class="s">&quot;five&quot;</span><span class="p">,</span>
+		<span class="s">&quot;six&quot;</span><span class="p">,</span>
+		<span class="s">&quot;seven&quot;</span><span class="p">,</span>
+		<span class="s">&quot;eight&quot;</span><span class="p">,</span>
+		<span class="s">&quot;nine&quot;</span><span class="p">,</span>
+		<span class="s">&quot;ten&quot;</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">tags</span><span class="p">[:</span><span class="nx">rand</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">random_duration</span><span class="p">()</span> <span class="kt">float64</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">rand</span><span class="p">.</span><span class="nx">Float64</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">dbmap</span> <span class="o">:=</span> <span class="nx">initDb</span><span class="p">()</span>
+	<span class="k">defer</span> <span class="nx">dbmap</span><span class="p">.</span><span class="nx">Db</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+
+	<span class="c1">// alter sequence talks_id_seq restart with 1;</span>
+
+	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">dbmap</span><span class="p">.</span><span class="nx">TruncateTables</span><span class="p">()</span>
+	<span class="nx">checkErr</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&quot;TruncateTables failed&quot;</span><span class="p">)</span>
+
+	<span class="c1">// dbmap.TraceOn(&quot;[gorp]&quot;, log.New(os.Stdout, &quot;myapp:&quot;, log.Lmicroseconds))</span>
+
+	<span class="nx">t0</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">()</span>
+	<span class="kd">var</span> <span class="nx">talks</span> <span class="p">[</span><span class="nx">HOW_MANY</span><span class="p">]</span><span class="nx">Talk</span>
+
+	<span class="nx">trans</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">dbmap</span><span class="p">.</span><span class="nx">Begin</span><span class="p">()</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="c1">// CREATE</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">HOW_MANY</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">topic</span> <span class="o">:=</span> <span class="nx">random_topic</span><span class="p">()</span>
+		<span class="nx">when</span> <span class="o">:=</span> <span class="nx">random_when</span><span class="p">()</span>
+		<span class="nx">tags</span> <span class="o">:=</span> <span class="nx">random_tags</span><span class="p">()</span>
+		<span class="nx">duration</span> <span class="o">:=</span> <span class="nx">random_duration</span><span class="p">()</span>
+
+		<span class="nx">talk</span> <span class="o">:=</span> <span class="nx">Talk</span><span class="p">{</span>
+			<span class="nx">Topic</span><span class="p">:</span>    <span class="nx">topic</span><span class="p">,</span>
+			<span class="nx">When</span><span class="p">:</span>     <span class="nx">when</span><span class="p">,</span>
+			<span class="nx">Tags</span><span class="p">:</span>     <span class="nx">ToArray</span><span class="p">(</span><span class="nx">tags</span><span class="p">),</span>
+			<span class="nx">Duration</span><span class="p">:</span> <span class="nx">duration</span><span class="p">,</span>
+		<span class="p">}</span>
+
+		<span class="nx">err</span> <span class="p">=</span> <span class="nx">dbmap</span><span class="p">.</span><span class="nx">Insert</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">talk</span><span class="p">)</span>
+		<span class="nx">checkErr</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&quot;Insert failed&quot;</span><span class="p">)</span>
+		<span class="nx">talks</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">talk</span>
+
+	<span class="p">}</span>
+
+	<span class="nx">trans</span><span class="p">.</span><span class="nx">Commit</span><span class="p">()</span>
+	<span class="nx">t1</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Since</span><span class="p">(</span><span class="nx">t0</span><span class="p">)</span>
+	<span class="nx">t0</span> <span class="p">=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">()</span>
+
+	<span class="nx">trans</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">dbmap</span><span class="p">.</span><span class="nx">Begin</span><span class="p">()</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="c1">// EDIT ALL</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">talk</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">talks</span> <span class="p">{</span>
+
+		<span class="nx">talk</span><span class="p">.</span><span class="nx">Topic</span> <span class="o">+=</span> <span class="s">&quot;extra&quot;</span>
+		<span class="nx">talk</span><span class="p">.</span><span class="nx">Duration</span> <span class="o">+=</span> <span class="mf">1.0</span>
+		<span class="nx">talk</span><span class="p">.</span><span class="nx">When</span> <span class="p">=</span> <span class="nx">talk</span><span class="p">.</span><span class="nx">When</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Hour</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span>
+		<span class="nx">tags</span> <span class="o">:=</span> <span class="nx">parseArray</span><span class="p">(</span><span class="nx">talk</span><span class="p">.</span><span class="nx">Tags</span><span class="p">)</span>
+		<span class="nx">talk</span><span class="p">.</span><span class="nx">Tags</span> <span class="p">=</span> <span class="nx">ToArray</span><span class="p">(</span><span class="nb">append</span><span class="p">(</span><span class="nx">tags</span><span class="p">,</span> <span class="s">&quot;extra&quot;</span><span class="p">))</span>
+
+		<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">dbmap</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">talk</span><span class="p">)</span>
+		<span class="nx">checkErr</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&quot;Update failed&quot;</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="nx">trans</span><span class="p">.</span><span class="nx">Commit</span><span class="p">()</span>
+	<span class="nx">t2</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Since</span><span class="p">(</span><span class="nx">t0</span><span class="p">)</span>
+	<span class="nx">t0</span> <span class="p">=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">()</span>
+
+	<span class="nx">trans</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">dbmap</span><span class="p">.</span><span class="nx">Begin</span><span class="p">()</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="c1">// DELETE ALL</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">talk</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">talks</span> <span class="p">{</span>
+		<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">dbmap</span><span class="p">.</span><span class="nx">Exec</span><span class="p">(</span><span class="s">&quot;delete from talks where id=$1&quot;</span><span class="p">,</span> <span class="nx">talk</span><span class="p">.</span><span class="nx">Id</span><span class="p">)</span>
+		<span class="nx">checkErr</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&quot;Delete failed&quot;</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="nx">trans</span><span class="p">.</span><span class="nx">Commit</span><span class="p">()</span>
+	<span class="nx">t3</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Since</span><span class="p">(</span><span class="nx">t0</span><span class="p">)</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;insert&quot;</span><span class="p">,</span> <span class="nx">t1</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;edit&quot;</span><span class="p">,</span> <span class="nx">t2</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;delete&quot;</span><span class="p">,</span> <span class="nx">t3</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;TOTAL&quot;</span><span class="p">,</span> <span class="nx">t1</span><span class="o">+</span><span class="nx">t2</span><span class="o">+</span><span class="nx">t3</span><span class="p">)</span>
+
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">Talk</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="c1">// db tag lets you specify the column name</span>
+	<span class="c1">// if it differs from the struct field</span>
+	<span class="nx">Id</span>    <span class="kt">int64</span>     <span class="s">`db:&quot;id&quot;`</span>
+	<span class="nx">Topic</span> <span class="kt">string</span>    <span class="s">`db:&quot;topic&quot;`</span>
+	<span class="nx">When</span>  <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span> <span class="s">`db:&quot;when&quot;`</span>
+	<span class="c1">// Tags    StringSlice</span>
+	<span class="nx">Tags</span>     <span class="kt">string</span>  <span class="s">`db:&quot;tags&quot;`</span>
+	<span class="nx">Duration</span> <span class="kt">float64</span> <span class="s">`db:&quot;duration&quot;`</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">initDb</span><span class="p">()</span> <span class="o">*</span><span class="nx">gorp</span><span class="p">.</span><span class="nx">DbMap</span> <span class="p">{</span>
+	<span class="c1">// connect to db using standard Go database/sql API</span>
+	<span class="c1">// use whatever database/sql driver you wish</span>
+	<span class="nx">db</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">sql</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="s">&quot;postgres&quot;</span><span class="p">,</span> <span class="s">`</span>
+<span class="s">		user=peterbe dbname=fastestdb</span>
+<span class="s">		password=test123 sslmode=disable`</span><span class="p">)</span>
+	<span class="nx">checkErr</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&quot;sql.Open failed&quot;</span><span class="p">)</span>
+
+	<span class="c1">// construct a gorp DbMap</span>
+	<span class="nx">dbmap</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">gorp</span><span class="p">.</span><span class="nx">DbMap</span><span class="p">{</span><span class="nx">Db</span><span class="p">:</span> <span class="nx">db</span><span class="p">,</span> <span class="nx">Dialect</span><span class="p">:</span> <span class="nx">gorp</span><span class="p">.</span><span class="nx">PostgresDialect</span><span class="p">{}}</span>
+
+	<span class="c1">// add a table, setting the table name to &#39;talks&#39; and</span>
+	<span class="c1">// specifying that the Id property is an auto incrementing PK</span>
+	<span class="nx">dbmap</span><span class="p">.</span><span class="nx">AddTableWithName</span><span class="p">(</span><span class="nx">Talk</span><span class="p">{},</span> <span class="s">&quot;talks&quot;</span><span class="p">).</span><span class="nx">SetKeys</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="s">&quot;Id&quot;</span><span class="p">)</span>
+
+	<span class="k">return</span> <span class="nx">dbmap</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">checkErr</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nx">Fatalln</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 

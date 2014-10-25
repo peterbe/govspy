@@ -58,7 +58,11 @@ def run(out):
             continue
 
         id = os.path.basename(snippet_dir)
-        title = id.replace('_', ' ').title()
+        if os.path.isfile(os.path.join(snippet_dir, 'title')):
+            title = open(os.path.join(snippet_dir, 'title')).read().strip()
+        else:
+            title = id.replace('_', ' ').title()
+
         readme = None
         for f in glob(os.path.join(snippet_dir, '*.md')):
             if readme is not None:
