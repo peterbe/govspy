@@ -178,6 +178,8 @@ and (max-width : 320px) {
     
       <li><a href="#args">Args</a></li>
     
+      <li><a href="#import_alias">Import Alias</a></li>
+    
     </ul>
   </div>
 
@@ -1996,6 +1998,55 @@ BENGT
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">args</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
 	<span class="nx">transform</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+          
+        </div>
+      </div>
+    </article>
+    <hr>
+    
+    <article id="import_alias" class="group">
+
+      <a href="#top" class="top">Top</a>
+      <h3>Import Alias
+        <a href="#import_alias" title="Permalink to this snippet">
+          &#x1f517;
+        </a>
+      </h3>
+      
+      <p>This example is a bit silly because you normally don't bother with an
+alias for short built-ins. It's import appropriate for long import
+nameslike:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="p">(</span>
+    <span class="nx">pb</span> <span class="s">&quot;github.com/golang/groupcache/groupcachepb&quot;</span>
+<span class="p">)</span>
+</pre></div>
+      
+      <div class="codes">
+        <div class="code python">
+          <h4>Python</h4>
+          
+            <div class="highlight"><pre><span class="kn">import</span> <span class="nn">string</span> <span class="kn">as</span> <span class="nn">s</span>
+
+<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">)</span>
+</pre></div>
+
+          
+        </div>
+        <div class="code go">
+          <h4>Go</h4>
+          
+            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&quot;fmt&quot;</span>
+	<span class="nx">s</span> <span class="s">&quot;strings&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">ToUpper</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">))</span>
 <span class="p">}</span>
 </pre></div>
 
