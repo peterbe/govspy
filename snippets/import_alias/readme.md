@@ -7,3 +7,11 @@ import (
     pb "github.com/golang/groupcache/groupcachepb"
 )
 ```
+
+You can also import packages that you won't actually use. E.g.
+
+```go
+import (
+    _ "image/png"  // import can do magic
+)
+```
