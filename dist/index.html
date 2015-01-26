@@ -180,6 +180,8 @@ and (max-width : 320px) {
     
       <li><a href="#import_alias">Import Alias</a></li>
     
+      <li><a href="#sprintf">Sprintf</a></li>
+    
     </ul>
   </div>
 
@@ -2023,6 +2025,12 @@ nameslike:</p>
     <span class="nx">pb</span> <span class="s">&quot;github.com/golang/groupcache/groupcachepb&quot;</span>
 <span class="p">)</span>
 </pre></div>
+
+<p>You can also import packages that you won't actually use. E.g.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="p">(</span>
+    <span class="nx">_</span> <span class="s">&quot;image/png&quot;</span>  <span class="c1">// import can do magic</span>
+<span class="p">)</span>
+</pre></div>
       
       <div class="codes">
         <div class="code python">
@@ -2047,6 +2055,50 @@ nameslike:</p>
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">ToUpper</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+
+          
+        </div>
+      </div>
+    </article>
+    <hr>
+    
+    <article id="sprintf" class="group">
+
+      <a href="#top" class="top">Top</a>
+      <h3>Sprintf
+        <a href="#sprintf" title="Permalink to this snippet">
+          &#x1f517;
+        </a>
+      </h3>
+      
+      <p>You might have seen things like <code>fmt.Println("some string")</code> and
+variations around it. But sometimes you might want to just generate
+a string using the formatting tools found under <code>fmt</code> without it
+necessarily going out on <code>stdout</code>. That's what
+<a href="http://golang.org/pkg/fmt/#Sprintf"><code>fmt.Sprintf</code></a> is for.</p>
+      
+      <div class="codes">
+        <div class="code python">
+          <h4>Python</h4>
+          
+            <div class="highlight"><pre><span class="nb">max</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;The max. number is {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">max</span><span class="p">))</span>
+</pre></div>
+
+          
+        </div>
+        <div class="code go">
+          <h4>Go</h4>
+          
+            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">max</span> <span class="o">:=</span> <span class="mi">10</span>
+	<span class="nb">panic</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;The max. number is %d&quot;</span><span class="p">,</span> <span class="nx">max</span><span class="p">))</span>
 <span class="p">}</span>
 </pre></div>
 
