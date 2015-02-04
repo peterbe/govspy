@@ -182,6 +182,8 @@ and (max-width : 320px) {
     
       <li><a href="#sprintf">Sprintf</a></li>
     
+      <li><a href="#uniqify">Uniqify</a></li>
+    
     </ul>
   </div>
 
@@ -2099,6 +2101,75 @@ necessarily going out on <code>stdout</code>. That's what
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">max</span> <span class="o">:=</span> <span class="mi">10</span>
 	<span class="nb">panic</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;The max. number is %d&quot;</span><span class="p">,</span> <span class="nx">max</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+
+          
+        </div>
+      </div>
+    </article>
+    <hr>
+    
+    <article id="uniqify" class="group">
+
+      <a href="#top" class="top">Top</a>
+      <h3>Uniqify
+        <a href="#uniqify" title="Permalink to this snippet">
+          &#x1f517;
+        </a>
+      </h3>
+      
+      <p>The Python version is neat in that it's entirely type agnostic as long as
+the value supports hashing.
+I'm sure it's possible to do an equivalent one in Go using <code>interface{}</code>.
+Patches welcome.</p>
+<p>For faster variants in Python see
+<a href="http://www.peterbe.com/plog/uniqifiers-benchmark">Fastest way to uniqify a list in
+Python</a>.</p>
+      
+      <div class="codes">
+        <div class="code python">
+          <h4>Python</h4>
+          
+            <div class="highlight"><pre><span class="k">def</span> <span class="nf">uniqify</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">unique</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+            <span class="n">seen</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">unique</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">unique</span>
+
+<span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;Q&#39;</span><span class="p">,</span> <span class="s">&#39;Q&#39;</span><span class="p">,</span> <span class="s">&#39;Q&#39;</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">uniqify</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>  <span class="c"># prints [&#39;B&#39;, &#39;E&#39;, &#39;Q&#39;]</span>
+</pre></div>
+
+          
+        </div>
+        <div class="code go">
+          <h4>Go</h4>
+          
+            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span> <span class="nx">uniqify</span><span class="p">(</span><span class="nx">items</span> <span class="o">*</span><span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">seen</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">bool</span><span class="p">)</span>
+	<span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">x</span> <span class="o">:=</span> <span class="k">range</span> <span class="o">*</span><span class="nx">items</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">!</span><span class="nx">seen</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="p">{</span>
+			<span class="nx">seen</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="p">=</span> <span class="kc">true</span>
+			<span class="p">(</span><span class="o">*</span><span class="nx">items</span><span class="p">)[</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="p">(</span><span class="o">*</span><span class="nx">items</span><span class="p">)[</span><span class="nx">i</span><span class="p">]</span>
+			<span class="nx">j</span><span class="o">++</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="o">*</span><span class="nx">items</span> <span class="p">=</span> <span class="p">(</span><span class="o">*</span><span class="nx">items</span><span class="p">)[:</span><span class="nx">j</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">items</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;Q&quot;</span><span class="p">,</span> <span class="s">&quot;Q&quot;</span><span class="p">,</span> <span class="s">&quot;Q&quot;</span><span class="p">}</span>
+	<span class="nx">uniqify</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">items</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span> <span class="c1">// prints [B E Q]</span>
 <span class="p">}</span>
 </pre></div>
 
