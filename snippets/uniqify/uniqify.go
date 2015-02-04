@@ -15,7 +15,6 @@ func uniqify(items *[]string) {
 	*items = (*items)[:j]
 }
 
-
 func main() {
 	items := []string{"B", "B", "E", "Q", "Q", "Q"}
 	uniqify(&items)
