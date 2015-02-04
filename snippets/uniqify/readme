@@ -1,0 +1,4 @@
+The Python version is neat in that it's entirely type agnostic as long as
+the value supports hashing.
+I'm sure it's possible to do an equivalent one in Go using `interface{}`.
+Patches welcome.
