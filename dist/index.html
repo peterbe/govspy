@@ -184,6 +184,8 @@ and (max-width : 320px) {
     
       <li><a href="#uniqify">Uniqify</a></li>
     
+      <li><a href="#dotdict">Dotdict</a></li>
+    
     </ul>
   </div>
 
@@ -2126,6 +2128,9 @@ Patches welcome.</p>
 <p>For faster variants in Python see
 <a href="http://www.peterbe.com/plog/uniqifiers-benchmark">Fastest way to uniqify a list in
 Python</a>.</p>
+<p>For some more thoughts on this, and an example of a implementation
+that is not in-place check out <a href="https://groups.google.com/d/topic/golang-nuts/-pqkICuokio/discussion">this mailing list
+thread</a>.</p>
       
       <div class="codes">
         <div class="code python">
@@ -2170,6 +2175,68 @@ Python</a>.</p>
 	<span class="nx">items</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;Q&quot;</span><span class="p">,</span> <span class="s">&quot;Q&quot;</span><span class="p">,</span> <span class="s">&quot;Q&quot;</span><span class="p">}</span>
 	<span class="nx">uniqify</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">items</span><span class="p">)</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span> <span class="c1">// prints [B E Q]</span>
+<span class="p">}</span>
+</pre></div>
+
+          
+        </div>
+      </div>
+    </article>
+    <hr>
+    
+    <article id="dotdict" class="group">
+
+      <a href="#top" class="top">Top</a>
+      <h3>Dotdict
+        <a href="#dotdict" title="Permalink to this snippet">
+          &#x1f517;
+        </a>
+      </h3>
+      
+      <p>In the Python version you can alternatively be more explicit and use
+somethign like:</p>
+<div class="highlight"><pre><span class="n">initials</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+<p>instead of first checking if the key is there.</p>
+<p>Note that in Go, when you set the type to be an <code>int</code> it automatically
+sets it to 0 upon initialization. </p>
+      
+      <div class="codes">
+        <div class="code python">
+          <h4>Python</h4>
+          
+            <div class="highlight"><pre><span class="n">initials</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;peter&#39;</span><span class="p">,</span> <span class="s">&#39;anders&#39;</span><span class="p">,</span> <span class="s">&#39;bengt&#39;</span><span class="p">,</span> <span class="s">&#39;bengtsson&#39;</span><span class="p">):</span>
+    <span class="n">initial</span> <span class="o">=</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c"># if initial not in initials:</span>
+    <span class="c">#     initials[initial] = 0</span>
+    <span class="n">initials</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">initials</span><span class="p">[</span><span class="n">initial</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">print</span> <span class="n">initials</span>
+<span class="c"># outputs</span>
+<span class="c"># {&#39;a&#39;: 1, &#39;p&#39;: 1, &#39;b&#39;: 2}</span>
+</pre></div>
+
+          
+        </div>
+        <div class="code go">
+          <h4>Go</h4>
+          
+            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">names</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;peter&quot;</span><span class="p">,</span> <span class="s">&quot;anders&quot;</span><span class="p">,</span> <span class="s">&quot;bengt&quot;</span><span class="p">,</span> <span class="s">&quot;bengtsson&quot;</span><span class="p">}</span>
+	<span class="nx">initials</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">name</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">names</span> <span class="p">{</span>
+		<span class="nx">initial</span> <span class="o">:=</span> <span class="nb">string</span><span class="p">(</span><span class="nx">name</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+		<span class="nx">initials</span><span class="p">[</span><span class="nx">initial</span><span class="p">]</span><span class="o">++</span>
+	<span class="p">}</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">initials</span><span class="p">)</span>
+	<span class="c1">// outputs</span>
+	<span class="c1">// map[p:1 a:1 b:2]</span>
 <span class="p">}</span>
 </pre></div>
 
