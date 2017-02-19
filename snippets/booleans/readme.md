@@ -13,7 +13,7 @@ if y:
     print "this won't be printed"
 ```
 
-This is not possible in Go. You really need to do it explicitely for
+This is not possible in Go. You really need to do it explicitly for
 every type:
 
 ```go
