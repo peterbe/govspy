@@ -546,7 +546,7 @@ most types have a way of automatically converting to <code>True</code> or
     <span class="k">print</span> <span class="s">&quot;this won&#39;t be printed&quot;</span>
 </pre></div>
 
-<p>This is not possible in Go. You really need to do it explicitely for
+<p>This is not possible in Go. You really need to do it explicitly for
 every type:</p>
 <div class="highlight"><pre><span class="nx">x</span> <span class="o">:=</span> <span class="mi">1</span>
 <span class="k">if</span> <span class="nx">x</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
@@ -924,6 +924,13 @@ but you can't change it. Suppose you wanted to do this:</p>
 
 <p>Then you would get a <code>UnboundLocalError</code> error because the variable
 would be tied to the inner scope of the <code>increment</code> function.</p>
+<p>Note: you can use the <code>global</code> statement, to get around that, example</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="n">amount</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">number</span>
+    <span class="n">number</span> <span class="o">+=</span> <span class="n">amount</span>
+<span class="n">increment</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">increment</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
       
       <div class="codes">
         <div class="code python">
@@ -935,8 +942,8 @@ would be tied to the inner scope of the <code>increment</code> function.</p>
         <span class="k">return</span> <span class="n">number</span> <span class="o">+</span> <span class="n">amount</span>
 
     <span class="n">number</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">number</span> <span class="o">+=</span> <span class="n">increment</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">number</span> <span class="o">+=</span> <span class="n">increment</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">increment</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">increment</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
     <span class="k">print</span> <span class="n">number</span>  <span class="c"># 3</span>
 
 <span class="n">run</span><span class="p">()</span>
@@ -1429,6 +1436,28 @@ $ curl http://localhost:3000/markdown?body=THis+%2Ais%2A+a+string
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
+          
+            <div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">mistune</span> <span class="kn">as</span> <span class="nn">markdown</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">markdown</span>  <span class="c"># py implementation</span>
+
+<span class="kn">import</span> <span class="nn">falcon</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">falcon</span><span class="o">.</span><span class="n">API</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">Markdown</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">on_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">):</span>
+        <span class="n">resp</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">markdown</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">&#39;body&#39;</span><span class="p">))</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s">&#39;/markdown&#39;</span><span class="p">,</span> <span class="n">Markdown</span><span class="p">())</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">wsgiref</span> <span class="kn">import</span> <span class="n">simple_server</span>
+    <span class="n">httpd</span> <span class="o">=</span> <span class="n">simple_server</span><span class="o">.</span><span class="n">make_server</span><span class="p">(</span><span class="s">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span>
+    <span class="n">httpd</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
+</pre></div>
+
           
             <div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">mistune</span> <span class="kn">as</span> <span class="nn">markdown</span>
@@ -2194,13 +2223,13 @@ thread</a>.</p>
       </h3>
       
       <p>In the Python version you can alternatively be more explicit and use
-somethign like:</p>
+something like:</p>
 <div class="highlight"><pre><span class="n">initials</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
 <p>instead of first checking if the key is there.</p>
 <p>Note that in Go, when you set the type to be an <code>int</code> it automatically
-sets it to 0 upon initialization. </p>
+sets it to 0 upon initialization.</p>
       
       <div class="codes">
         <div class="code python">
