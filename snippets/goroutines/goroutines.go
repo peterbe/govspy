@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"sync"
 )
 
 func f(url string) {
@@ -20,7 +21,9 @@ func f(url string) {
 	fmt.Println(len(body))
 }
 
+// See the example in https://golang.org/pkg/sync/#WaitGroup
 func main() {
+	var wg sync.WaitGroup
 	urls := []string{
 		"http://www.peterbe.com",
 		"http://peterbe.com",
@@ -28,10 +31,12 @@ func main() {
 		"http://tflcameras.peterbe.com",
 	}
 	for _, url := range urls {
-		go f(url)
+		wg.Add(1)
+		go func(url string) {
+			defer wg.Done()
+			f(url)
+		}(url)
 	}
-	// necessary so it doesn't close before
-	// the goroutines have finished
-	var input string
-	fmt.Scanln(&input)
+	// Wait for the goroutines to finish
+	wg.Wait()
 }
