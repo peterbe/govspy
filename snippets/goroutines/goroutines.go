@@ -25,10 +25,9 @@ func f(url string) {
 func main() {
 	var wg sync.WaitGroup
 	urls := []string{
-		"http://www.peterbe.com",
-		"http://peterbe.com",
-		"http://htmltree.peterbe.com",
-		"http://tflcameras.peterbe.com",
+		"https://www.peterbe.com",
+		"https://python.org",
+		"https://golang.org",
 	}
 	for _, url := range urls {
 		wg.Add(1)

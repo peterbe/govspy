@@ -1,3 +1,3 @@
 #!/bin/bash
 
-check.py snippets/*/*.py
+flake8 snippets/*/*.py
