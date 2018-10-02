@@ -1,0 +1,13 @@
+actions:
+  black:
+    run: black --check --diff {files}
+    fix: black {files}
+    include: "snippets/**/*.py"
+
+  flake8:
+    run: flake8 {files}
+    include: "snippets/**/*.py"
+
+  gofmt:
+    run: gofmt -w {files}
+    include: "snippets/**/*.go"
