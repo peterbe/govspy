@@ -98,7 +98,7 @@ def run(out, dry_run=False, check_built=False):
         # was created before.
         with open(out) as f:
             before = f.read()
-        if before != html:
+        if before.strip() != html.strip():
             raise CheckBuiltFailed(
                 "The generated HTML is different from what it was before. "
                 "That means that the HTML made from the snippets doesn't match "
