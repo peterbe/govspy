@@ -6,7 +6,8 @@ matrix:
 install:
   - eval "$(gimme $GO)"
   - pip install -r requirements.txt
-script: ./scripts/pep8.sh
+  - pip install therapist
+script: therapist run --use-tracked-files
 # after_success: TOP=. coveralls
 cache:
   directories:
