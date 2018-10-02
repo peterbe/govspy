@@ -2,16 +2,13 @@
 
 import os
 import re
-import codecs
 from glob import glob
 
-from time import time
 import pygments
 from pygments import lexers
 from pygments.formatters import HtmlFormatter
 
 import markdown
-import cssmin
 import click
 import jinja2
 
@@ -23,12 +20,18 @@ env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir), autoescap
 
 
 class SnippetError(Exception):
-    pass
+    """Something wrong with one of the snippets."""
+
+
+class CheckBuiltFailed(Exception):
+    """When the --check-built option fails."""
 
 
 @click.command()
 @click.option("--out", "-o", help="defaults to stdout", default="dist/index.html")
-def run(out):
+@click.option("--dry-run", "-d", help="Checks that it can be built.", is_flag=True)
+@click.option("--check-built", help="Checks that it was already built.", is_flag=True)
+def run(out, dry_run=False, check_built=False):
     snippets = []
 
     py_lexer = lexers.PythonLexer()
@@ -37,15 +40,17 @@ def run(out):
 
     for snippet_dir in _dirs():
         go_codes = []
-        for f in glob(os.path.join(snippet_dir, "*.go")):
-            go_codes.append((f, codecs.open(f, "r", "utf8").read()))
+        for fn in glob(os.path.join(snippet_dir, "*.go")):
+            with open(fn) as f:
+                go_codes.append((fn, f.read()))
         if not go_codes:
             print(snippet_dir, "has no .go code")
             continue
 
         py_codes = []
-        for f in glob(os.path.join(snippet_dir, "*.py")):
-            py_codes.append((f, codecs.open(f, "r", "utf8").read()))
+        for fn in glob(os.path.join(snippet_dir, "*.py")):
+            with open(fn) as f:
+                py_codes.append((fn, f.read()))
         if not py_codes:
             print(snippet_dir, "has no .py code")
             continue
@@ -58,11 +63,11 @@ def run(out):
             title = id.replace("_", " ").title()
 
         readme = None
-        for f in glob(os.path.join(snippet_dir, "*.md")):
+        for fn in glob(os.path.join(snippet_dir, "*.md")):
             if readme is not None:
                 raise SnippetError("%s contains multiple .md files")
-            with codecs.open(f, "r", "utf-8") as reader:
-                readme = special_markdown(reader.read())
+            with open(fn) as f:
+                readme = special_markdown(f.read())
         snippets.append(
             {
                 "id": id,
@@ -85,8 +90,39 @@ def run(out):
         highlight_css=html_formatter.get_style_defs(".highlight"),
         bootstrap_css=env.get_template("bootstrap.min.css").render(),
     )
-    if out:
-        codecs.open(out, "w", "utf-8").write(html)
+    if dry_run:
+        # Everything worked!
+        return 0
+    if check_built:
+        # Raise an error if the newly created HTML isn't the same as what
+        # was created before.
+        with open(out) as f:
+            before = f.read()
+        lines_before = [x.strip() for x in before.strip().splitlines() if x.strip()]
+        lines_html = [x.strip() for x in html.strip().splitlines() if x.strip()]
+        if lines_before != lines_html:
+            import difflib
+
+            print(
+                "".join(
+                    difflib.unified_diff(
+                        before.splitlines(True),
+                        html.splitlines(True),
+                        fromfile="HTML before",
+                        tofile="New HTML",
+                    )
+                )
+            )
+            raise CheckBuiltFailed(
+                "The generated HTML is different from what it was before. "
+                "That means that the HTML made from the snippets doesn't match "
+                "the build HTML. Run this script without --check-built and check "
+                "in the changes to the dist HTML."
+            )
+    elif out:
+        with open(out, "w") as f:
+            f.write(html)
+            f.write("\n")
     else:
         print(html)
 

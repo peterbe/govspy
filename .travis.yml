@@ -3,12 +3,15 @@ matrix:
   include:
     - env: TOXENV=py36 GO=1.11
       python: 3.6
+branches:
+  only:
+    - master
 install:
   - eval "$(gimme $GO)"
   - pip install -r requirements.txt
   - pip install therapist
-script: therapist run --use-tracked-files
-# after_success: TOP=. coveralls
+script:
+  - therapist run --use-tracked-files
 cache:
   directories:
     - $HOME/.cache/pip
