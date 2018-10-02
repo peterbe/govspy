@@ -99,6 +99,18 @@ def run(out, dry_run=False, check_built=False):
         with open(out) as f:
             before = f.read()
         if before.strip() != html.strip():
+            import difflib
+
+            print(
+                "".join(
+                    difflib.unified_diff(
+                        before.splitlines(True),
+                        html.splitlines(True),
+                        fromfile="HTML before",
+                        tofile="New HTML",
+                    )
+                )
+            )
             raise CheckBuiltFailed(
                 "The generated HTML is different from what it was before. "
                 "That means that the HTML made from the snippets doesn't match "
