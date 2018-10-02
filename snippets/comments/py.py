@@ -7,5 +7,5 @@ class Class(object):
     """This is the doc string for the class"""
 
 
-print __doc__
-print Class.__doc__
+print(__doc__)
+print(Class.__doc__)

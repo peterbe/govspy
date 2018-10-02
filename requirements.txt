@@ -1,5 +1,8 @@
-Jinja2==2.7.3
-Markdown==2.5.1
-Pygments==1.6
-click==3.3
+Jinja2==2.10
+Markdown==3.0.1
+Pygments==2.2.0
+click==7.0
 cssmin==0.2.0
+black==18.9b0
+flake8==3.5.0
+pyflakes==1.6.0

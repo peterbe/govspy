@@ -1,4 +1,3 @@
-from __future__ import division
 from math import sqrt
 
 
@@ -14,4 +13,4 @@ def distance(point1, point2):
 
 p1 = Point(1, 3)
 p2 = Point(2, 4)
-print distance(p1, p2)  # 3.74165738677
+print(distance(p1, p2))  # 3.74165738677

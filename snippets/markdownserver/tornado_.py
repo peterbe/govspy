@@ -1,4 +1,3 @@
-import tornado
 try:
     import mistune as markdown
 except ImportError:
@@ -10,13 +9,11 @@ import tornado.web
 
 class MarkdownHandler(tornado.web.RequestHandler):
     def get(self):
-        body = self.get_argument('body')
+        body = self.get_argument("body")
         self.write(markdown.markdown(body))
 
 
-application = tornado.web.Application([
-    (r"/markdown", MarkdownHandler),
-])
+application = tornado.web.Application([(r"/markdown", MarkdownHandler)])
 
 if __name__ == "__main__":
     application.listen(8888)
