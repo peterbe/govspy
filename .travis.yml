@@ -12,7 +12,6 @@ install:
   - pip install therapist
 script:
   - therapist run --use-tracked-files
-  - ./scripts/build_html.py --check-built
 cache:
   directories:
     - $HOME/.cache/pip

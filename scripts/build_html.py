@@ -113,8 +113,6 @@ def run(out, dry_run=False, check_built=False):
                     )
                 )
             )
-            print("Would generate...")
-            print(html)
             raise CheckBuiltFailed(
                 "The generated HTML is different from what it was before. "
                 "That means that the HTML made from the snippets doesn't match "
