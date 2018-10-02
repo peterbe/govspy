@@ -116,8 +116,6 @@ and (max-width : 320px) {
     font-size: 10px;
   }
 }
-
-
 </style>
 </head>
 <body>
@@ -142,64 +140,64 @@ and (max-width : 320px) {
   <div class="toc">
     <h4>Table of Contents</h4>
     <ul>
-
+    
       <li><a href="#hello_world">Hello World</a></li>
-
+    
       <li><a href="#print">Print</a></li>
-
+    
       <li><a href="#comments">Comments</a></li>
-
+    
       <li><a href="#multiline_strings">Multiline Strings</a></li>
-
+    
       <li><a href="#lists">Lists</a></li>
-
+    
       <li><a href="#maps">Maps</a></li>
-
+    
       <li><a href="#booleans">Booleans</a></li>
-
+    
       <li><a href="#forloop">Forloop</a></li>
-
+    
       <li><a href="#range">Range</a></li>
-
+    
       <li><a href="#switch">Switch</a></li>
-
+    
       <li><a href="#variadic_functions">Variadic Functions</a></li>
-
+    
       <li><a href="#time_elapsed">Time Elapsed</a></li>
-
+    
       <li><a href="#closure_functions">Closure Functions</a></li>
-
+    
       <li><a href="#defer">Defer</a></li>
-
+    
       <li><a href="#panic_recover">Panic Recover</a></li>
-
+    
       <li><a href="#mutables">Mutables</a></li>
-
+    
       <li><a href="#structs">Structs</a></li>
-
+    
       <li><a href="#methods">Methods</a></li>
-
+    
       <li><a href="#goroutines">Goroutines</a></li>
-
+    
       <li><a href="#markdownserver">Markdownserver</a></li>
-
+    
       <li><a href="#orm">ORM (Object Relational Mapper)</a></li>
-
+    
       <li><a href="#args">Args</a></li>
-
+    
       <li><a href="#import_alias">Import Alias</a></li>
-
+    
       <li><a href="#sprintf">Sprintf</a></li>
-
+    
       <li><a href="#uniqify">Uniqify</a></li>
-
+    
       <li><a href="#dotdict">Dotdict</a></li>
-
+    
     </ul>
   </div>
 
   <div class="articles" role="content">
-
+    
     <article id="hello_world" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -208,19 +206,19 @@ and (max-width : 320px) {
           &#x1f517;
         </a>
       </h3>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -230,12 +228,12 @@ and (max-width : 320px) {
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="print" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -244,21 +242,21 @@ and (max-width : 320px) {
           &#x1f517;
         </a>
       </h3>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;Some string&quot;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Some string&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># no newline character printed</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Name: {}, Age: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Peter&quot;</span><span class="p">,</span> <span class="mi">35</span><span class="p">))</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -270,12 +268,12 @@ and (max-width : 320px) {
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="comments" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -284,11 +282,11 @@ and (max-width : 320px) {
           &#x1f517;
         </a>
       </h3>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;This is a doc string for the whole module&quot;&quot;&quot;</span>
 
 <span class="c1"># This is a inline comment</span>
@@ -302,11 +300,11 @@ and (max-width : 320px) {
 <span class="k">print</span><span class="p">(</span><span class="n">Class</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="c1">// This is a general comment</span>
@@ -326,12 +324,12 @@ and (max-width : 320px) {
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="multiline_strings" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -340,11 +338,11 @@ and (max-width : 320px) {
           &#x1f517;
         </a>
       </h3>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span>
     <span class="sd">&quot;&quot;&quot;This is</span>
 <span class="sd">a multi-line string.</span>
@@ -353,11 +351,11 @@ and (max-width : 320px) {
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;O&#39;word &quot;</span> <span class="s1">&#39;Another &quot;word&quot; &#39;</span> <span class="s2">&quot;Last word.&quot;</span><span class="p">)</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -373,12 +371,12 @@ and (max-width : 320px) {
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="lists" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -387,18 +385,18 @@ and (max-width : 320px) {
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>A <code>slice</code> is a segment of an array whose length can change.</p>
 <p>The major difference between an <code>array</code> and a <code>slice</code> is that with the
 array you need to know the size up front. In Go, there is no way to
 equally easily add values to an existing <code>slice</code> so if you want to
 easily add values, you can initialize a slice at a max length and
 incrementally add things to it.</p>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="c1"># initialize list</span>
 <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>
 <span class="c1"># change one of them</span>
@@ -415,11 +413,11 @@ incrementally add things to it.</p>
 <span class="k">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>  <span class="c1"># [2.2]</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -450,12 +448,12 @@ incrementally add things to it.</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="maps" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -464,7 +462,7 @@ incrementally add things to it.</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>You can make a map of maps with:</p>
 <div class="highlight"><pre><span></span><span class="nx">elements</span> <span class="p">:</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
 <span class="nx">elements</span><span class="p">[</span><span class="s">&quot;H&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
@@ -474,11 +472,11 @@ incrementally add things to it.</p>
 </pre></div>
 
 <p>But note, this is what you have <code>struct</code> for.</p>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="n">elements</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">elements</span><span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="k">print</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">])</span>  <span class="c1"># 1</span>
@@ -494,11 +492,11 @@ incrementally add things to it.</p>
     <span class="k">print</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">])</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -523,12 +521,12 @@ incrementally add things to it.</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="booleans" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -537,7 +535,7 @@ incrementally add things to it.</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>Go doesn't have a quick way to evaluate if something is
 <a href="http://en.wikipedia.org/wiki/Truthiness">"truthy"</a>.
 In Python, for example, you can use an <code>if</code> statement on any type and
@@ -562,21 +560,21 @@ every type:</p>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;this won&#39;t be printed&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="bp">True</span> <span class="ow">and</span> <span class="bp">False</span><span class="p">)</span>  <span class="c1"># False</span>
 <span class="k">print</span><span class="p">(</span><span class="bp">True</span> <span class="ow">or</span> <span class="bp">False</span><span class="p">)</span>  <span class="c1"># True</span>
 <span class="k">print</span><span class="p">(</span><span class="ow">not</span> <span class="bp">True</span><span class="p">)</span>  <span class="c1"># False</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -598,12 +596,12 @@ every type:</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="forloop" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -612,13 +610,13 @@ every type:</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>Go has only one type of loop and that's the <code>for</code> loop.</p>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -630,11 +628,11 @@ every type:</p>
     <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -653,12 +651,12 @@ every type:</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="range" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -667,21 +665,21 @@ every type:</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Peter&quot;</span><span class="p">,</span> <span class="s2">&quot;Anders&quot;</span><span class="p">,</span> <span class="s2">&quot;Bengt&quot;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{}. {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -704,12 +702,12 @@ every type:</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="switch" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -718,11 +716,11 @@ every type:</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">input_</span><span class="p">():</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
 
@@ -746,11 +744,11 @@ every type:</p>
 <span class="k">print</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="s2">&quot;I have no idea what </span><span class="si">%d</span><span class="s2"> is&quot;</span> <span class="o">%</span> <span class="n">number</span><span class="p">))</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -803,12 +801,12 @@ every type:</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="variadic_functions" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -817,15 +815,15 @@ every type:</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>In Python you can accept varying types with <code>somefunction(*args)</code> but
 this is not possible with Go. You can however, make the type an
 interface thus being able to get much more rich type structs.</p>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="o">*</span><span class="n">numbers</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
 
@@ -833,11 +831,11 @@ interface thus being able to get much more rich type structs.</p>
 <span class="k">print</span><span class="p">(</span><span class="n">average</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># 10/4 = 2.5</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -855,12 +853,12 @@ interface thus being able to get much more rich type structs.</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="time_elapsed" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -869,11 +867,11 @@ interface thus being able to get much more rich type structs.</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 
 <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
@@ -882,11 +880,11 @@ interface thus being able to get much more rich type structs.</p>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Took {:.2f} seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -899,12 +897,12 @@ interface thus being able to get much more rich type structs.</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="closure_functions" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -913,7 +911,7 @@ interface thus being able to get much more rich type structs.</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>Note in the Python example you can access <code>number</code> in the inner function
 but you can't change it. Suppose you wanted to do this:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="n">amount</span><span class="p">):</span>
@@ -931,11 +929,11 @@ would be tied to the inner scope of the <code>increment</code> function.</p>
 <span class="n">increment</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">increment</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
     <span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="n">amount</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">number</span> <span class="o">+</span> <span class="n">amount</span>
@@ -949,11 +947,11 @@ would be tied to the inner scope of the <code>increment</code> function.</p>
 <span class="n">run</span><span class="p">()</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -975,12 +973,12 @@ would be tied to the inner scope of the <code>increment</code> function.</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="defer" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -989,17 +987,17 @@ would be tied to the inner scope of the <code>increment</code> function.</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>The cool thing about <code>defer</code> in Go is that you can type that near
 where it matters and it's then clear to the reader that it will do
 that later.</p>
 <p>In Python you can sort of achive the same thing by keeping the content
 between the <code>try:</code> and the <code>finally:</code> block short.</p>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;defer.py&quot;</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
@@ -1007,11 +1005,11 @@ between the <code>try:</code> and the <code>finally:</code> block short.</p>
     <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -1027,12 +1025,12 @@ between the <code>try:</code> and the <code>finally:</code> block short.</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="panic_recover" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -1041,22 +1039,22 @@ between the <code>try:</code> and the <code>finally:</code> block short.</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
     <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Shit&quot;</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;error was:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -1072,12 +1070,12 @@ between the <code>try:</code> and the <code>finally:</code> block short.</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="mutables" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -1086,15 +1084,15 @@ between the <code>try:</code> and the <code>finally:</code> block short.</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>Python doesn't have the concept of pointers. Go does. But with Go you
 can send an array or a map into a function, have it modified there
 without being returned and it gets changed.</p>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">upone</span><span class="p">(</span><span class="n">mutable</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
     <span class="n">mutable</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">mutable</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
 
@@ -1108,11 +1106,11 @@ without being returned and it gets changed.</p>
 <span class="k">print</span><span class="p">(</span><span class="n">dict_</span><span class="p">)</span>  <span class="c1"># {&#39;a&#39;: &#39;anders&#39;, &#39;b&#39;: &#39;BENGT&#39;}</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -1144,12 +1142,12 @@ without being returned and it gets changed.</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="structs" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -1158,11 +1156,11 @@ without being returned and it gets changed.</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
 
 
@@ -1181,11 +1179,11 @@ without being returned and it gets changed.</p>
 <span class="k">print</span><span class="p">(</span><span class="n">distance</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">))</span>  <span class="c1"># 3.74165738677</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -1216,12 +1214,12 @@ without being returned and it gets changed.</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="methods" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -1230,11 +1228,11 @@ without being returned and it gets changed.</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
 
 
@@ -1253,11 +1251,11 @@ without being returned and it gets changed.</p>
 <span class="k">print</span><span class="p">(</span><span class="n">p2</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">p1</span><span class="p">))</span>  <span class="c1"># 3.74165738677</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -1288,12 +1286,12 @@ without being returned and it gets changed.</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="goroutines" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -1302,16 +1300,16 @@ without being returned and it gets changed.</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>Note that when you run these, the numbers come in in different order
 between runs.</p>
 <p>In the Python example, it exits automatically when all requests have
 finished.</p>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib2</span>
 <span class="kn">import</span> <span class="nn">multiprocessing</span>
 
@@ -1332,11 +1330,11 @@ finished.</p>
     <span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">urls</span><span class="p">)</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -1380,12 +1378,12 @@ finished.</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="markdownserver" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -1394,7 +1392,7 @@ finished.</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>Using simple ab (with concurrency):</p>
 <pre><code>$ ab -n 10000 -c 10 http://localhost:XXXX/markdown?body=THis+%2Ais%2A+a+string
 </code></pre>
@@ -1430,11 +1428,11 @@ $ curl http://localhost:5000/markdown?body=THis+%2Ais%2A+a+string
 $ node node_.js
 $ curl http://localhost:3000/markdown?body=THis+%2Ais%2A+a+string
 </code></pre>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">mistune</span> <span class="kn">as</span> <span class="nn">markdown</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
@@ -1457,7 +1455,7 @@ $ curl http://localhost:3000/markdown?body=THis+%2Ais%2A+a+string
     <span class="n">tornado</span><span class="o">.</span><span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 
-
+          
             <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="k">try</span><span class="p">:</span>
@@ -1483,11 +1481,11 @@ $ curl http://localhost:3000/markdown?body=THis+%2Ais%2A+a+string
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -1514,12 +1512,12 @@ $ curl http://localhost:3000/markdown?body=THis+%2Ais%2A+a+string
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="orm" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -1528,7 +1526,7 @@ $ curl http://localhost:3000/markdown?body=THis+%2Ais%2A+a+string
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>This is a comparison between
 <a href="https://github.com/coopernurse/gorp">gorp</a> and
 <a href="http://www.sqlalchemy.org/">sqlalchemy</a>.</p>
@@ -1559,11 +1557,11 @@ edit 10.28062312s
 delete 6.851942699s
 TOTAL 19.674902724s
 </code></pre>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="c1"># *- coding: utf-8 -*</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">random</span>
@@ -1698,11 +1696,11 @@ TOTAL 19.674902724s
     <span class="n">run</span><span class="p">()</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -1965,12 +1963,12 @@ TOTAL 19.674902724s
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="args" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -1979,7 +1977,7 @@ TOTAL 19.674902724s
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>To run this:</p>
 <pre><code>go run args.go peter anders bengt
 </code></pre>
@@ -1988,11 +1986,11 @@ TOTAL 19.674902724s
 ANDERS
 BENGT
 </code></pre>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 
 
@@ -2005,11 +2003,11 @@ BENGT
     <span class="n">transform</span><span class="p">(</span><span class="o">*</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -2030,12 +2028,12 @@ BENGT
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="import_alias" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -2044,7 +2042,7 @@ BENGT
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>This example is a bit silly because you normally don't bother with an
 alias for short built-ins. It's import appropriate for long import
 nameslike:</p>
@@ -2058,21 +2056,21 @@ nameslike:</p>
     <span class="nx">_</span> <span class="s">&quot;image/png&quot;</span>  <span class="c1">// import can do magic</span>
 <span class="p">)</span>
 </pre></div>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">string</span> <span class="kn">as</span> <span class="nn">s</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">))</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -2085,12 +2083,12 @@ nameslike:</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="sprintf" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -2099,26 +2097,26 @@ nameslike:</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>You might have seen things like <code>fmt.Println("some string")</code> and
 variations around it. But sometimes you might want to just generate
 a string using the formatting tools found under <code>fmt</code> without it
 necessarily going out on <code>stdout</code>. That's what
 <a href="http://golang.org/pkg/fmt/#Sprintf"><code>fmt.Sprintf</code></a> is for.</p>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="nb">max</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;The max. number is {max}&quot;</span><span class="p">)</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -2129,12 +2127,12 @@ necessarily going out on <code>stdout</code>. That's what
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="uniqify" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -2143,7 +2141,7 @@ necessarily going out on <code>stdout</code>. That's what
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>The Python version is neat in that it's entirely type agnostic as long as
 the value supports hashing.
 I'm sure it's possible to do an equivalent one in Go using <code>interface{}</code>.
@@ -2154,11 +2152,11 @@ Python</a>.</p>
 <p>For some more thoughts on this, and an example of a implementation
 that is not in-place check out <a href="https://groups.google.com/d/topic/golang-nuts/-pqkICuokio/discussion">this mailing list
 thread</a>.</p>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">uniqify</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
     <span class="n">seen</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">unique</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2173,11 +2171,11 @@ thread</a>.</p>
 <span class="k">print</span><span class="p">(</span><span class="n">uniqify</span><span class="p">(</span><span class="n">items</span><span class="p">))</span>  <span class="c1"># prints [&#39;B&#39;, &#39;E&#39;, &#39;Q&#39;]</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -2207,12 +2205,12 @@ thread</a>.</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
     <hr>
-
+    
     <article id="dotdict" class="group">
 
       <a href="#top" class="top">Top</a>
@@ -2221,7 +2219,7 @@ thread</a>.</p>
           &#x1f517;
         </a>
       </h3>
-
+      
       <p>In the Python version you can alternatively be more explicit and use
 something like:</p>
 <div class="highlight"><pre><span></span><span class="n">initials</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -2230,11 +2228,11 @@ something like:</p>
 <p>instead of first checking if the key is there.</p>
 <p>Note that in Go, when you set the type to be an <code>int</code> it automatically
 sets it to 0 upon initialization.</p>
-
+      
       <div class="codes">
         <div class="code python">
           <h4>Python</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="n">initials</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;peter&quot;</span><span class="p">,</span> <span class="s2">&quot;anders&quot;</span><span class="p">,</span> <span class="s2">&quot;bengt&quot;</span><span class="p">,</span> <span class="s2">&quot;bengtsson&quot;</span><span class="p">):</span>
     <span class="n">initial</span> <span class="o">=</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -2248,11 +2246,11 @@ sets it to 0 upon initialization.</p>
 <span class="c1"># {&#39;a&#39;: 1, &#39;p&#39;: 1, &#39;b&#39;: 2}</span>
 </pre></div>
 
-
+          
         </div>
         <div class="code go">
           <h4>Go</h4>
-
+          
             <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -2270,12 +2268,12 @@ sets it to 0 upon initialization.</p>
 <span class="p">}</span>
 </pre></div>
 
-
+          
         </div>
       </div>
     </article>
-
-
+    
+    
 
   </div>
 

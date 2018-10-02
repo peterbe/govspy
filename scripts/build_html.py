@@ -108,6 +108,7 @@ def run(out, dry_run=False, check_built=False):
     elif out:
         with open(out, "w") as f:
             f.write(html)
+            f.write("\n")
     else:
         print(html)
 
