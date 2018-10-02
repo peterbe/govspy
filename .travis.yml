@@ -1,0 +1,14 @@
+language: python
+matrix:
+  include:
+    - env: TOXENV=py36 GO=1.11
+      python: 3.6
+install:
+  - eval "$(gimme $GO)"
+  - pip install -r requirements.txt
+script: ./scripts/pep8.sh
+# after_success: TOP=. coveralls
+cache:
+  directories:
+    - $HOME/.cache/pip
+    - $HOME/.cache/pre-commit
