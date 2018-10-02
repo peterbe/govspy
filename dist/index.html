@@ -19,8 +19,10 @@
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
 .highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
 .highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
 .highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
 .highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
@@ -55,12 +57,15 @@
 .highlight .nv { color: #19177C } /* Name.Variable */
 .highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
 .highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
 .highlight .mf { color: #666666 } /* Literal.Number.Float */
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -71,9 +76,11 @@
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
 article h3 { margin-top: 50px; }
 article h3 a { opacity: 0.1; font-size: 70%; }
@@ -204,7 +211,7 @@ and (max-width : 320px) {
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;Hello world&quot;</span>
+            <div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>
 </pre></div>
 
           
@@ -212,7 +219,7 @@ and (max-width : 320px) {
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -240,10 +247,9 @@ and (max-width : 320px) {
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;Some string&quot;</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;Some string&quot;</span><span class="p">)</span>  <span class="c"># Python 3</span>
-<span class="k">print</span> <span class="s">&quot;Some string&quot;</span><span class="p">,</span>  <span class="c"># no newline character printed</span>
-<span class="k">print</span> <span class="s">&quot;Name: </span><span class="si">%s</span><span class="s">, Age: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;Peter&#39;</span><span class="p">,</span> <span class="mi">35</span><span class="p">)</span>
+            <div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;Some string&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Some string&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># no newline character printed</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Name: {}, Age: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Peter&quot;</span><span class="p">,</span> <span class="mi">35</span><span class="p">))</span>
 </pre></div>
 
           
@@ -251,7 +257,7 @@ and (max-width : 320px) {
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -281,17 +287,17 @@ and (max-width : 320px) {
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="sd">&quot;&quot;&quot;This is a doc string for the whole module&quot;&quot;&quot;</span>
+            <div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;This is a doc string for the whole module&quot;&quot;&quot;</span>
 
-<span class="c"># This is a inline comment</span>
+<span class="c1"># This is a inline comment</span>
 
 
 <span class="k">class</span> <span class="nc">Class</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This is the doc string for the class&quot;&quot;&quot;</span>
 
 
-<span class="k">print</span> <span class="n">__doc__</span>
-<span class="k">print</span> <span class="n">Class</span><span class="o">.</span><span class="n">__doc__</span>
+<span class="k">print</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">Class</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
 </pre></div>
 
           
@@ -299,7 +305,7 @@ and (max-width : 320px) {
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="c1">// This is a general comment</span>
 
@@ -337,15 +343,12 @@ and (max-width : 320px) {
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;&quot;&quot;This is</span>
-<span class="s">a multi-line string.</span>
-<span class="s">&quot;&quot;&quot;</span>
-
-<span class="k">print</span> <span class="p">(</span>
-    <span class="s">&quot;O&#39;word &quot;</span>
-    <span class="s">&#39;Another &quot;word&quot; &#39;</span>
-    <span class="s">&quot;Last word.&quot;</span>
+            <div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span>
+    <span class="sd">&quot;&quot;&quot;This is</span>
+<span class="sd">a multi-line string.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;O&#39;word &quot;</span> <span class="s1">&#39;Another &quot;word&quot; &#39;</span> <span class="s2">&quot;Last word.&quot;</span><span class="p">)</span>
 </pre></div>
 
           
@@ -353,7 +356,7 @@ and (max-width : 320px) {
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -394,20 +397,20 @@ incrementally add things to it.</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="c"># initialize list</span>
+            <div class="highlight"><pre><span></span><span class="c1"># initialize list</span>
 <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>
-<span class="c"># change one of them</span>
+<span class="c1"># change one of them</span>
 <span class="n">numbers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">some_numbers</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">some_numbers</span>  <span class="c"># [0, 100]</span>
-<span class="c"># length of it</span>
-<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>  <span class="c"># 5</span>
+<span class="k">print</span><span class="p">(</span><span class="n">some_numbers</span><span class="p">)</span>  <span class="c1"># [0, 100]</span>
+<span class="c1"># length of it</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">))</span>  <span class="c1"># 5</span>
 
-<span class="c"># initialize another</span>
+<span class="c1"># initialize another</span>
 <span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span>
 <span class="n">scores</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.2</span>
-<span class="k">print</span> <span class="n">scores</span>  <span class="c"># [2.2]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>  <span class="c1"># [2.2]</span>
 </pre></div>
 
           
@@ -415,7 +418,7 @@ incrementally add things to it.</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -461,7 +464,7 @@ incrementally add things to it.</p>
       </h3>
       
       <p>You can make a map of maps with:</p>
-<div class="highlight"><pre><span class="nx">elements</span> <span class="p">:</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="nx">elements</span> <span class="p">:</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
 <span class="nx">elements</span><span class="p">[</span><span class="s">&quot;H&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
     <span class="s">&quot;protons&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="s">&quot;neutrons&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -474,19 +477,19 @@ incrementally add things to it.</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="n">elements</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">elements</span><span class="p">[</span><span class="s">&quot;H&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="k">print</span> <span class="n">elements</span><span class="p">[</span><span class="s">&quot;H&quot;</span><span class="p">]</span>  <span class="c"># 1</span>
+            <div class="highlight"><pre><span></span><span class="n">elements</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">elements</span><span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">print</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">])</span>  <span class="c1"># 1</span>
 
-<span class="c"># remove by key</span>
-<span class="n">elements</span><span class="p">[</span><span class="s">&quot;O&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="n">elements</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&quot;O&quot;</span><span class="p">)</span>
+<span class="c1"># remove by key</span>
+<span class="n">elements</span><span class="p">[</span><span class="s2">&quot;O&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">elements</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">)</span>
 
-<span class="c"># do something depending on the being there</span>
-<span class="k">if</span> <span class="s">&quot;O&quot;</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
-    <span class="k">print</span> <span class="n">elements</span><span class="p">[</span><span class="s">&quot;O&quot;</span><span class="p">]</span>
-<span class="k">if</span> <span class="s">&quot;H&quot;</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
-    <span class="k">print</span> <span class="n">elements</span><span class="p">[</span><span class="s">&quot;H&quot;</span><span class="p">]</span>
+<span class="c1"># do something depending on the being there</span>
+<span class="k">if</span> <span class="s2">&quot;O&quot;</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="s2">&quot;O&quot;</span><span class="p">])</span>
+<span class="k">if</span> <span class="s2">&quot;H&quot;</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">])</span>
 </pre></div>
 
           
@@ -494,7 +497,7 @@ incrementally add things to it.</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -538,17 +541,17 @@ incrementally add things to it.</p>
 In Python, for example, you can use an <code>if</code> statement on any type and
 most types have a way of automatically converting to <code>True</code> or
 <code>False</code>. For example you can do:</p>
-<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="k">if</span> <span class="n">x</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&quot;Yes&quot;</span>
+    <span class="k">print</span> <span class="s2">&quot;Yes&quot;</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">if</span> <span class="n">y</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&quot;this won&#39;t be printed&quot;</span>
+    <span class="k">print</span> <span class="s2">&quot;this won&#39;t be printed&quot;</span>
 </pre></div>
 
 <p>This is not possible in Go. You really need to do it explicitly for
 every type:</p>
-<div class="highlight"><pre><span class="nx">x</span> <span class="o">:=</span> <span class="mi">1</span>
+<div class="highlight"><pre><span></span><span class="nx">x</span> <span class="o">:=</span> <span class="mi">1</span>
 <span class="k">if</span> <span class="nx">x</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Yes&quot;</span><span class="p">)</span>
 <span class="p">}</span>
@@ -562,9 +565,9 @@ every type:</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="k">print</span> <span class="bp">True</span> <span class="ow">and</span> <span class="bp">False</span>  <span class="c"># False</span>
-<span class="k">print</span> <span class="bp">True</span> <span class="ow">or</span> <span class="bp">False</span>  <span class="c"># True</span>
-<span class="k">print</span> <span class="ow">not</span> <span class="bp">True</span>  <span class="c"># False</span>
+            <div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="bp">True</span> <span class="ow">and</span> <span class="bp">False</span><span class="p">)</span>  <span class="c1"># False</span>
+<span class="k">print</span><span class="p">(</span><span class="bp">True</span> <span class="ow">or</span> <span class="bp">False</span><span class="p">)</span>  <span class="c1"># True</span>
+<span class="k">print</span><span class="p">(</span><span class="ow">not</span> <span class="bp">True</span><span class="p">)</span>  <span class="c1"># False</span>
 </pre></div>
 
           
@@ -572,7 +575,7 @@ every type:</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -614,15 +617,15 @@ every type:</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+            <div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>
-    <span class="k">print</span> <span class="n">i</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
 
-<span class="c"># ...or...</span>
+<span class="c1"># ...or...</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
-    <span class="k">print</span> <span class="n">i</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </pre></div>
 
           
@@ -630,7 +633,7 @@ every type:</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -667,9 +670,9 @@ every type:</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Peter&quot;</span><span class="p">,</span> <span class="s">&quot;Anders&quot;</span><span class="p">,</span> <span class="s">&quot;Bengt&quot;</span><span class="p">]</span>
+            <div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Peter&quot;</span><span class="p">,</span> <span class="s2">&quot;Anders&quot;</span><span class="p">,</span> <span class="s2">&quot;Bengt&quot;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
-    <span class="k">print</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s">. </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{}. {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
 </pre></div>
 
           
@@ -677,7 +680,7 @@ every type:</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -718,31 +721,27 @@ every type:</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="k">def</span> <span class="nf">input</span><span class="p">():</span>
-    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">())</span>
+            <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">input_</span><span class="p">():</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
 
-<span class="n">number</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+
+<span class="n">number</span> <span class="o">=</span> <span class="n">input_</span><span class="p">()</span>
 <span class="k">if</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&quot;Oxygen&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Oxygen&quot;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&quot;Hydrogen&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Hydrogen&quot;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&quot;Helium&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Helium&quot;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">11</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&quot;Sodium&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Sodium&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&quot;I have no idea what </span><span class="si">%d</span><span class="s"> is&quot;</span> <span class="o">%</span> <span class="n">number</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;I have no idea what </span><span class="si">%d</span><span class="s2"> is&quot;</span> <span class="o">%</span> <span class="n">number</span><span class="p">)</span>
 
 
-<span class="c"># Alternative solution</span>
-<span class="n">number</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
-<span class="n">db</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="mi">1</span><span class="p">:</span> <span class="s">&quot;Hydrogen&quot;</span><span class="p">,</span>
-    <span class="mi">2</span><span class="p">:</span> <span class="s">&quot;Helium&quot;</span><span class="p">,</span>
-    <span class="mi">8</span><span class="p">:</span> <span class="s">&quot;Oxygen&quot;</span><span class="p">,</span>
-    <span class="mi">11</span><span class="p">:</span> <span class="s">&quot;Sodium&quot;</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="k">print</span> <span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="s">&quot;I have no idea what </span><span class="si">%d</span><span class="s"> is&quot;</span> <span class="o">%</span> <span class="n">number</span><span class="p">)</span>
+<span class="c1"># Alternative solution</span>
+<span class="n">number</span> <span class="o">=</span> <span class="n">input_</span><span class="p">()</span>
+<span class="n">db</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Hydrogen&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Helium&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">:</span> <span class="s2">&quot;Oxygen&quot;</span><span class="p">,</span> <span class="mi">11</span><span class="p">:</span> <span class="s2">&quot;Sodium&quot;</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="s2">&quot;I have no idea what </span><span class="si">%d</span><span class="s2"> is&quot;</span> <span class="o">%</span> <span class="n">number</span><span class="p">))</span>
 </pre></div>
 
           
@@ -750,7 +749,7 @@ every type:</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&quot;fmt&quot;</span>
@@ -825,13 +824,11 @@ interface thus being able to get much more rich type structs.</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
-
-
-<span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="o">*</span><span class="n">numbers</span><span class="p">):</span>
+            <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="o">*</span><span class="n">numbers</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
 
-<span class="k">print</span> <span class="n">average</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  <span class="c"># 10/4 = 2.5</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">average</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># 10/4 = 2.5</span>
 </pre></div>
 
           
@@ -839,7 +836,7 @@ interface thus being able to get much more rich type structs.</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -875,12 +872,12 @@ interface thus being able to get much more rich type structs.</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="kn">import</span> <span class="nn">time</span>
+            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 
 <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">3.5</span><span class="p">)</span>  <span class="c"># for example</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">3.5</span><span class="p">)</span>  <span class="c1"># for example</span>
 <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="k">print</span> <span class="s">&quot;Took </span><span class="si">%.2f</span><span class="s"> seconds&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Took {:.2f} seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
 </pre></div>
 
           
@@ -888,8 +885,9 @@ interface thus being able to get much more rich type structs.</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 <span class="kn">import</span> <span class="s">&quot;time&quot;</span>
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
@@ -916,7 +914,7 @@ interface thus being able to get much more rich type structs.</p>
       
       <p>Note in the Python example you can access <code>number</code> in the inner function
 but you can't change it. Suppose you wanted to do this:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="n">amount</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="n">amount</span><span class="p">):</span>
     <span class="n">number</span> <span class="o">+=</span> <span class="n">amount</span>
 <span class="n">increment</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">increment</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -925,7 +923,7 @@ but you can't change it. Suppose you wanted to do this:</p>
 <p>Then you would get a <code>UnboundLocalError</code> error because the variable
 would be tied to the inner scope of the <code>increment</code> function.</p>
 <p>Note: you can use the <code>global</code> statement, to get around that, example</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="n">amount</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="n">amount</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">number</span>
     <span class="n">number</span> <span class="o">+=</span> <span class="n">amount</span>
 <span class="n">increment</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -936,15 +934,15 @@ would be tied to the inner scope of the <code>increment</code> function.</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
-
+            <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
     <span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="n">amount</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">number</span> <span class="o">+</span> <span class="n">amount</span>
 
     <span class="n">number</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">number</span> <span class="o">=</span> <span class="n">increment</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">number</span> <span class="o">=</span> <span class="n">increment</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">number</span>  <span class="c"># 3</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>  <span class="c1"># 3</span>
+
 
 <span class="n">run</span><span class="p">()</span>
 </pre></div>
@@ -954,7 +952,7 @@ would be tied to the inner scope of the <code>increment</code> function.</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -1000,7 +998,7 @@ between the <code>try:</code> and the <code>finally:</code> block short.</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;defer.py&quot;</span><span class="p">)</span>
+            <div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;defer.py&quot;</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="k">finally</span><span class="p">:</span>
@@ -1012,7 +1010,7 @@ between the <code>try:</code> and the <code>finally:</code> block short.</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&quot;os&quot;</span>
@@ -1046,10 +1044,10 @@ between the <code>try:</code> and the <code>finally:</code> block short.</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&#39;Shit&#39;</span><span class="p">)</span>
+            <div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Shit&quot;</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&quot;error was:&quot;</span><span class="p">,</span> <span class="n">e</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;error was:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
 </pre></div>
 
           
@@ -1057,7 +1055,7 @@ between the <code>try:</code> and the <code>finally:</code> block short.</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -1095,17 +1093,17 @@ without being returned and it gets changed.</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="k">def</span> <span class="nf">upone</span><span class="p">(</span><span class="n">mutable</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+            <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">upone</span><span class="p">(</span><span class="n">mutable</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
     <span class="n">mutable</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">mutable</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
 
 
-<span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">]</span>
-<span class="n">upone</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="k">print</span> <span class="nb">list</span>  <span class="c"># [&#39;a&#39;, &#39;B&#39;, &#39;c&#39;]</span>
+<span class="n">list_</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]</span>
+<span class="n">upone</span><span class="p">(</span><span class="n">list_</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">list_</span><span class="p">)</span>  <span class="c1"># [&#39;a&#39;, &#39;B&#39;, &#39;c&#39;]</span>
 
-<span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;a&#39;</span><span class="p">:</span> <span class="s">&#39;anders&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">:</span> <span class="s">&#39;bengt&#39;</span><span class="p">}</span>
-<span class="n">upone</span><span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">)</span>
-<span class="k">print</span> <span class="nb">dict</span>  <span class="c"># {&#39;a&#39;: &#39;anders&#39;, &#39;b&#39;: &#39;BENGT&#39;}</span>
+<span class="n">dict_</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;anders&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="s2">&quot;bengt&quot;</span><span class="p">}</span>
+<span class="n">upone</span><span class="p">(</span><span class="n">dict_</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dict_</span><span class="p">)</span>  <span class="c1"># {&#39;a&#39;: &#39;anders&#39;, &#39;b&#39;: &#39;BENGT&#39;}</span>
 </pre></div>
 
           
@@ -1113,7 +1111,7 @@ without being returned and it gets changed.</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&quot;fmt&quot;</span>
@@ -1163,12 +1161,11 @@ without being returned and it gets changed.</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+            <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
 
 
 <span class="k">class</span> <span class="nc">Point</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
 
@@ -1179,7 +1176,7 @@ without being returned and it gets changed.</p>
 
 <span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">distance</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span>  <span class="c"># 3.74165738677</span>
+<span class="k">print</span><span class="p">(</span><span class="n">distance</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">))</span>  <span class="c1"># 3.74165738677</span>
 </pre></div>
 
           
@@ -1187,7 +1184,7 @@ without being returned and it gets changed.</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&quot;fmt&quot;</span>
@@ -1236,12 +1233,11 @@ without being returned and it gets changed.</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+            <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
 
 
 <span class="k">class</span> <span class="nc">Point</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
 
@@ -1251,8 +1247,8 @@ without being returned and it gets changed.</p>
 
 <span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">p1</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>  <span class="c"># 3.74165738677</span>
-<span class="k">print</span> <span class="n">p2</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>  <span class="c"># 3.74165738677</span>
+<span class="k">print</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">p2</span><span class="p">))</span>  <span class="c1"># 3.74165738677</span>
+<span class="k">print</span><span class="p">(</span><span class="n">p2</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">p1</span><span class="p">))</span>  <span class="c1"># 3.74165738677</span>
 </pre></div>
 
           
@@ -1260,7 +1256,7 @@ without being returned and it gets changed.</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&quot;fmt&quot;</span>
@@ -1314,26 +1310,22 @@ finished.</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="kn">import</span> <span class="nn">urllib2</span>
+            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib2</span>
 <span class="kn">import</span> <span class="nn">multiprocessing</span>
 
 
 <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
     <span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
     <span class="k">finally</span><span class="p">:</span>
         <span class="n">req</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 
-<span class="n">urls</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="s">&quot;http://www.peterbe.com&quot;</span><span class="p">,</span>
-    <span class="s">&quot;http://peterbe.com&quot;</span><span class="p">,</span>
-    <span class="s">&quot;http://htmltree.peterbe.com&quot;</span><span class="p">,</span>
-    <span class="s">&quot;http://tflcameras.peterbe.com&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">urls</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;https://www.peterbe.com&quot;</span><span class="p">,</span> <span class="s2">&quot;https://python.org&quot;</span><span class="p">,</span> <span class="s2">&quot;https://golang.org&quot;</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
     <span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">urls</span><span class="p">)</span>
 </pre></div>
@@ -1343,12 +1335,13 @@ finished.</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&quot;fmt&quot;</span>
 	<span class="s">&quot;io/ioutil&quot;</span>
 	<span class="s">&quot;net/http&quot;</span>
+	<span class="s">&quot;sync&quot;</span>
 <span class="p">)</span>
 
 <span class="kd">func</span> <span class="nx">f</span><span class="p">(</span><span class="nx">url</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
@@ -1365,20 +1358,23 @@ finished.</p>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">body</span><span class="p">))</span>
 <span class="p">}</span>
 
+<span class="c1">// See the example in https://golang.org/pkg/sync/#WaitGroup</span>
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
 	<span class="nx">urls</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
-		<span class="s">&quot;http://www.peterbe.com&quot;</span><span class="p">,</span>
-		<span class="s">&quot;http://peterbe.com&quot;</span><span class="p">,</span>
-		<span class="s">&quot;http://htmltree.peterbe.com&quot;</span><span class="p">,</span>
-		<span class="s">&quot;http://tflcameras.peterbe.com&quot;</span><span class="p">,</span>
+		<span class="s">&quot;https://www.peterbe.com&quot;</span><span class="p">,</span>
+		<span class="s">&quot;https://python.org&quot;</span><span class="p">,</span>
+		<span class="s">&quot;https://golang.org&quot;</span><span class="p">,</span>
 	<span class="p">}</span>
 	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">url</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">urls</span> <span class="p">{</span>
-		<span class="k">go</span> <span class="nx">f</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
+		<span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+		<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">url</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+			<span class="nx">f</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
+		<span class="p">}(</span><span class="nx">url</span><span class="p">)</span>
 	<span class="p">}</span>
-	<span class="c1">// necessary so it doesn&#39;t close before</span>
-	<span class="c1">// the goroutines have finished</span>
-	<span class="kd">var</span> <span class="nx">input</span> <span class="kt">string</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">input</span><span class="p">)</span>
+	<span class="c1">// Wait for the goroutines to finish</span>
+	<span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -1437,55 +1433,10 @@ $ curl http://localhost:3000/markdown?body=THis+%2Ais%2A+a+string
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
+            <div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">mistune</span> <span class="kn">as</span> <span class="nn">markdown</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">markdown</span>  <span class="c"># py implementation</span>
-
-<span class="kn">import</span> <span class="nn">falcon</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">falcon</span><span class="o">.</span><span class="n">API</span><span class="p">()</span>
-
-<span class="k">class</span> <span class="nc">Markdown</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">on_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">):</span>
-        <span class="n">resp</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">markdown</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">&#39;body&#39;</span><span class="p">))</span>
-
-<span class="n">app</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s">&#39;/markdown&#39;</span><span class="p">,</span> <span class="n">Markdown</span><span class="p">())</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">wsgiref</span> <span class="kn">import</span> <span class="n">simple_server</span>
-    <span class="n">httpd</span> <span class="o">=</span> <span class="n">simple_server</span><span class="o">.</span><span class="n">make_server</span><span class="p">(</span><span class="s">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span>
-    <span class="n">httpd</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
-</pre></div>
-
-          
-            <div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">mistune</span> <span class="kn">as</span> <span class="nn">markdown</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">markdown</span>  <span class="c"># py implementation</span>
-
-<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;werkzeug&#39;</span><span class="p">)</span>
-<span class="n">log</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
-
-
-<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/markdown&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">markdown_view</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">markdown</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;body&#39;</span><span class="p">])</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</pre></div>
-
-          
-            <div class="highlight"><pre><span class="kn">import</span> <span class="nn">tornado</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">mistune</span> <span class="kn">as</span> <span class="nn">markdown</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">markdown</span>  <span class="c"># py implementation</span>
+    <span class="kn">import</span> <span class="nn">markdown</span>  <span class="c1"># py implementation</span>
 
 <span class="kn">import</span> <span class="nn">tornado.ioloop</span>
 <span class="kn">import</span> <span class="nn">tornado.web</span>
@@ -1493,17 +1444,41 @@ $ curl http://localhost:3000/markdown?body=THis+%2Ais%2A+a+string
 
 <span class="k">class</span> <span class="nc">MarkdownHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">body</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_argument</span><span class="p">(</span><span class="s">&#39;body&#39;</span><span class="p">)</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_argument</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">markdown</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="n">body</span><span class="p">))</span>
 
 
-<span class="n">application</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">([</span>
-    <span class="p">(</span><span class="s">r&quot;/markdown&quot;</span><span class="p">,</span> <span class="n">MarkdownHandler</span><span class="p">),</span>
-<span class="p">])</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">([(</span><span class="sa">r</span><span class="s2">&quot;/markdown&quot;</span><span class="p">,</span> <span class="n">MarkdownHandler</span><span class="p">)])</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">application</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">8888</span><span class="p">)</span>
     <span class="n">tornado</span><span class="o">.</span><span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+
+          
+            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">mistune</span> <span class="kn">as</span> <span class="nn">markdown</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">markdown</span>  <span class="c1"># py implementation</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;werkzeug&quot;</span><span class="p">)</span>
+<span class="n">log</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/markdown&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">markdown_view</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">markdown</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;body&quot;</span><span class="p">])</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 
           
@@ -1511,7 +1486,7 @@ $ curl http://localhost:3000/markdown?body=THis+%2Ais%2A+a+string
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&quot;net/http&quot;</span>
@@ -1587,7 +1562,7 @@ TOTAL 19.674902724s
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="c"># *- coding: utf-8 -*</span>
+            <div class="highlight"><pre><span></span><span class="c1"># *- coding: utf-8 -*</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
@@ -1600,18 +1575,18 @@ TOTAL 19.674902724s
 
 <span class="n">HOW_MANY</span> <span class="o">=</span> <span class="mi">1000</span>
 
-<span class="c"># import logging</span>
-<span class="c"># logging.basicConfig()</span>
-<span class="c"># logger = logging.getLogger(&#39;sqlalchemy.engine&#39;)</span>
-<span class="c"># logger.setLevel(logging.INFO)</span>
+<span class="c1"># import logging</span>
+<span class="c1"># logging.basicConfig()</span>
+<span class="c1"># logger = logging.getLogger(&#39;sqlalchemy.engine&#39;)</span>
+<span class="c1"># logger.setLevel(logging.INFO)</span>
 
 <span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
 
 
 <span class="k">class</span> <span class="nc">Talk</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;talks&#39;</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;talks&quot;</span>
 
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">(</span><span class="s">&#39;talks_id_seq&#39;</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">(</span><span class="s2">&quot;talks_id_seq&quot;</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">topic</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
     <span class="n">when</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">)</span>
     <span class="n">tags</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">postgresql</span><span class="o">.</span><span class="n">ARRAY</span><span class="p">(</span><span class="n">String</span><span class="p">))</span>
@@ -1619,32 +1594,48 @@ TOTAL 19.674902724s
 
 
 <span class="k">def</span> <span class="nf">_random_topic</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">((</span>
-        <span class="s">u&#39;No talks added yet&#39;</span><span class="p">,</span>
-        <span class="s">u&quot;I&#39;m working on a branch of django-mongokit that I &quot;</span>
-        <span class="s">&quot;thought you&#39;d like to know about.&quot;</span><span class="p">,</span>
-        <span class="s">u&#39;I want to learn Gaelic.&#39;</span><span class="p">,</span>
-        <span class="s">u&quot;I&#39;m well, thank you.&quot;</span><span class="p">,</span>
-        <span class="s">u&#39; (Kaw uhn KEU-ra shin KAW-la root uh CHOO-nik mee uhn-royer?)&#39;</span><span class="p">,</span>
-        <span class="s">u&#39;Chah beh shin KEU-ra, sheh shin moe CHYEH-luh uh vah EEN-tchuh!&#39;</span><span class="p">,</span>
-        <span class="s">u&#39;STUH LUH-oom BRISS-kaht-chun goo MAWR&#39;</span><span class="p">,</span>
-        <span class="s">u&quot;Suas Leis a&#39; Ghàidhlig! Up with Gaelic!&quot;</span><span class="p">,</span>
-        <span class="s">u&quot;Tha mi ag iarraidh briosgaid!&quot;</span><span class="p">,</span>
-    <span class="p">))</span>
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span>
+        <span class="p">(</span>
+            <span class="s2">&quot;No talks added yet&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;I&#39;m working on a branch of django-mongokit that I &quot;</span>
+            <span class="s2">&quot;thought you&#39;d like to know about.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;I want to learn Gaelic.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;I&#39;m well, thank you.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot; (Kaw uhn KEU-ra shin KAW-la root uh CHOO-nik mee uhn-royer?)&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Chah beh shin KEU-ra, sheh shin moe CHYEH-luh uh vah EEN-tchuh!&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;STUH LUH-oom BRISS-kaht-chun goo MAWR&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Suas Leis a&#39; Ghàidhlig! Up with Gaelic!&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Tha mi ag iarraidh briosgaid!&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_random_when</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2010</span><span class="p">),</span>
-                             <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
-                             <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span>
-                             <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2010</span><span class="p">),</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span>
+        <span class="mi">0</span><span class="p">,</span>
+        <span class="mi">0</span><span class="p">,</span>
+        <span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_random_tags</span><span class="p">():</span>
-    <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s">u&#39;one&#39;</span><span class="p">,</span> <span class="s">u&#39;two&#39;</span><span class="p">,</span> <span class="s">u&#39;three&#39;</span><span class="p">,</span> <span class="s">u&#39;four&#39;</span><span class="p">,</span> <span class="s">u&#39;five&#39;</span><span class="p">,</span> <span class="s">u&#39;six&#39;</span><span class="p">,</span>
-            <span class="s">u&#39;seven&#39;</span><span class="p">,</span> <span class="s">u&#39;eight&#39;</span><span class="p">,</span> <span class="s">u&#39;nine&#39;</span><span class="p">,</span> <span class="s">u&#39;ten&#39;</span><span class="p">]</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;one&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;two&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;three&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;four&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;five&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;six&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;seven&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;eight&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;nine&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ten&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
     <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">tags</span><span class="p">[:</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">tags</span><span class="p">[:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
 
 
 <span class="k">def</span> <span class="nf">_random_duration</span><span class="p">():</span>
@@ -1653,8 +1644,7 @@ TOTAL 19.674902724s
 
 <span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
     <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span>
-        <span class="s">&#39;postgresql://peterbe:test123@localhost/fastestdb&#39;</span><span class="p">,</span>
-        <span class="n">echo</span><span class="o">=</span><span class="bp">False</span>
+        <span class="s2">&quot;postgresql://peterbe:test123@localhost/fastestdb&quot;</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="bp">False</span>
     <span class="p">)</span>
 
     <span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
@@ -1663,14 +1653,14 @@ TOTAL 19.674902724s
     <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Talk</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
 
     <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="c"># CREATE ALL</span>
+    <span class="c1"># CREATE ALL</span>
     <span class="n">talks</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">HOW_MANY</span><span class="p">):</span>
         <span class="n">talk</span> <span class="o">=</span> <span class="n">Talk</span><span class="p">(</span>
             <span class="n">topic</span><span class="o">=</span><span class="n">_random_topic</span><span class="p">(),</span>
             <span class="n">when</span><span class="o">=</span><span class="n">_random_when</span><span class="p">(),</span>
             <span class="n">duration</span><span class="o">=</span><span class="n">_random_duration</span><span class="p">(),</span>
-            <span class="n">tags</span><span class="o">=</span><span class="n">_random_tags</span><span class="p">()</span>
+            <span class="n">tags</span><span class="o">=</span><span class="n">_random_tags</span><span class="p">(),</span>
         <span class="p">)</span>
         <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">talk</span><span class="p">)</span>
         <span class="n">talks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">talk</span><span class="p">)</span>
@@ -1678,30 +1668,31 @@ TOTAL 19.674902724s
     <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 
     <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="c"># EDIT ALL</span>
+    <span class="c1"># EDIT ALL</span>
 
     <span class="k">for</span> <span class="n">talk</span> <span class="ow">in</span> <span class="n">talks</span><span class="p">:</span>
-        <span class="n">talk</span><span class="o">.</span><span class="n">topic</span> <span class="o">+=</span> <span class="s">&quot;extra&quot;</span>
+        <span class="n">talk</span><span class="o">.</span><span class="n">topic</span> <span class="o">+=</span> <span class="s2">&quot;extra&quot;</span>
         <span class="n">talk</span><span class="o">.</span><span class="n">duration</span> <span class="o">+=</span> <span class="mf">1.0</span>
         <span class="n">talk</span><span class="o">.</span><span class="n">when</span> <span class="o">+=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">talk</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;extra&quot;</span><span class="p">)</span>
+        <span class="n">talk</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;extra&quot;</span><span class="p">)</span>
         <span class="n">session</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">talk</span><span class="p">)</span>
 
     <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
     <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
-    <span class="c"># DELETE EACH</span>
+    <span class="c1"># DELETE EACH</span>
     <span class="k">for</span> <span class="n">talk</span> <span class="ow">in</span> <span class="n">talks</span><span class="p">:</span>
         <span class="n">session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">talk</span><span class="p">)</span>
     <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
     <span class="n">t3</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
-    <span class="k">print</span> <span class="s">&quot;insert&quot;</span><span class="p">,</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span>
-    <span class="k">print</span> <span class="s">&quot;edit&quot;</span><span class="p">,</span> <span class="n">t2</span> <span class="o">-</span> <span class="n">t1</span>
-    <span class="k">print</span> <span class="s">&quot;delete&quot;</span><span class="p">,</span> <span class="n">t3</span> <span class="o">-</span> <span class="n">t2</span>
-    <span class="k">print</span> <span class="s">&quot;TOTAL&quot;</span><span class="p">,</span> <span class="n">t3</span> <span class="o">-</span> <span class="n">t0</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;insert&quot;</span><span class="p">,</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;edit&quot;</span><span class="p">,</span> <span class="n">t2</span> <span class="o">-</span> <span class="n">t1</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;delete&quot;</span><span class="p">,</span> <span class="n">t3</span> <span class="o">-</span> <span class="n">t2</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;TOTAL&quot;</span><span class="p">,</span> <span class="n">t3</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">run</span><span class="p">()</span>
 </pre></div>
 
@@ -1710,7 +1701,7 @@ TOTAL 19.674902724s
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&quot;database/sql&quot;</span>
@@ -2000,14 +1991,15 @@ BENGT
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 
 
 <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
-        <span class="k">print</span> <span class="n">arg</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">arg</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">transform</span><span class="p">(</span><span class="o">*</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
 </pre></div>
 
@@ -2016,7 +2008,7 @@ BENGT
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&quot;fmt&quot;</span>
@@ -2054,13 +2046,13 @@ BENGT
       <p>This example is a bit silly because you normally don't bother with an
 alias for short built-ins. It's import appropriate for long import
 nameslike:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="p">(</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">(</span>
     <span class="nx">pb</span> <span class="s">&quot;github.com/golang/groupcache/groupcachepb&quot;</span>
 <span class="p">)</span>
 </pre></div>
 
 <p>You can also import packages that you won't actually use. E.g.</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="p">(</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">(</span>
     <span class="nx">_</span> <span class="s">&quot;image/png&quot;</span>  <span class="c1">// import can do magic</span>
 <span class="p">)</span>
 </pre></div>
@@ -2069,9 +2061,9 @@ nameslike:</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="kn">import</span> <span class="nn">string</span> <span class="kn">as</span> <span class="nn">s</span>
+            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">string</span> <span class="kn">as</span> <span class="nn">s</span>
 
-<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">))</span>
 </pre></div>
 
           
@@ -2079,7 +2071,7 @@ nameslike:</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
 	<span class="s">&quot;fmt&quot;</span>
@@ -2116,8 +2108,8 @@ necessarily going out on <code>stdout</code>. That's what
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="nb">max</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;The max. number is {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">max</span><span class="p">))</span>
+            <div class="highlight"><pre><span></span><span class="nb">max</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;The max. number is {max}&quot;</span><span class="p">)</span>
 </pre></div>
 
           
@@ -2125,7 +2117,7 @@ necessarily going out on <code>stdout</code>. That's what
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -2165,7 +2157,7 @@ thread</a>.</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="k">def</span> <span class="nf">uniqify</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+            <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">uniqify</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
     <span class="n">seen</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">unique</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
@@ -2174,8 +2166,9 @@ thread</a>.</p>
             <span class="n">unique</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">unique</span>
 
-<span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;Q&#39;</span><span class="p">,</span> <span class="s">&#39;Q&#39;</span><span class="p">,</span> <span class="s">&#39;Q&#39;</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">uniqify</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>  <span class="c"># prints [&#39;B&#39;, &#39;E&#39;, &#39;Q&#39;]</span>
+
+<span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="s2">&quot;Q&quot;</span><span class="p">,</span> <span class="s2">&quot;Q&quot;</span><span class="p">,</span> <span class="s2">&quot;Q&quot;</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">uniqify</span><span class="p">(</span><span class="n">items</span><span class="p">))</span>  <span class="c1"># prints [&#39;B&#39;, &#39;E&#39;, &#39;Q&#39;]</span>
 </pre></div>
 
           
@@ -2183,26 +2176,31 @@ thread</a>.</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
-<span class="kd">func</span> <span class="nx">uniqify</span><span class="p">(</span><span class="nx">items</span> <span class="o">*</span><span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nx">uniqify</span><span class="p">(</span><span class="nx">items</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">[]</span><span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">uniq</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">string</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 	<span class="nx">seen</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">bool</span><span class="p">)</span>
-	<span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span>
-	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">x</span> <span class="o">:=</span> <span class="k">range</span> <span class="o">*</span><span class="nx">items</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="p">!</span><span class="nx">seen</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="p">{</span>
-			<span class="nx">seen</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="p">=</span> <span class="kc">true</span>
-			<span class="p">(</span><span class="o">*</span><span class="nx">items</span><span class="p">)[</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="p">(</span><span class="o">*</span><span class="nx">items</span><span class="p">)[</span><span class="nx">i</span><span class="p">]</span>
-			<span class="nx">j</span><span class="o">++</span>
+
+	<span class="c1">// For the highest memory efficiency, do:</span>
+	<span class="c1">// seen := make(map[string]struct{})</span>
+	<span class="c1">// see: https://stackoverflow.com/questions/37320287/maptstruct-and-maptbool-in-golang</span>
+
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">items</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">exists</span> <span class="o">:=</span> <span class="nx">seen</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="p">!</span><span class="nx">exists</span> <span class="p">{</span>
+			<span class="nx">uniq</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">uniq</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+			<span class="nx">seen</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="kc">true</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
-	<span class="o">*</span><span class="nx">items</span> <span class="p">=</span> <span class="p">(</span><span class="o">*</span><span class="nx">items</span><span class="p">)[:</span><span class="nx">j</span><span class="p">]</span>
+
+	<span class="k">return</span> <span class="nx">uniq</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">items</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;Q&quot;</span><span class="p">,</span> <span class="s">&quot;Q&quot;</span><span class="p">,</span> <span class="s">&quot;Q&quot;</span><span class="p">}</span>
-	<span class="nx">uniqify</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">items</span><span class="p">)</span>
+	<span class="nx">items</span> <span class="p">=</span> <span class="nx">uniqify</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span> <span class="c1">// prints [B E Q]</span>
 <span class="p">}</span>
 </pre></div>
@@ -2224,7 +2222,7 @@ thread</a>.</p>
       
       <p>In the Python version you can alternatively be more explicit and use
 something like:</p>
-<div class="highlight"><pre><span class="n">initials</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">initials</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
 <p>instead of first checking if the key is there.</p>
@@ -2235,16 +2233,17 @@ sets it to 0 upon initialization.</p>
         <div class="code python">
           <h4>Python</h4>
           
-            <div class="highlight"><pre><span class="n">initials</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;peter&#39;</span><span class="p">,</span> <span class="s">&#39;anders&#39;</span><span class="p">,</span> <span class="s">&#39;bengt&#39;</span><span class="p">,</span> <span class="s">&#39;bengtsson&#39;</span><span class="p">):</span>
+            <div class="highlight"><pre><span></span><span class="n">initials</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;peter&quot;</span><span class="p">,</span> <span class="s2">&quot;anders&quot;</span><span class="p">,</span> <span class="s2">&quot;bengt&quot;</span><span class="p">,</span> <span class="s2">&quot;bengtsson&quot;</span><span class="p">):</span>
     <span class="n">initial</span> <span class="o">=</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="c"># if initial not in initials:</span>
-    <span class="c">#     initials[initial] = 0</span>
+    <span class="c1"># if initial not in initials:</span>
+    <span class="c1">#     initials[initial] = 0</span>
     <span class="n">initials</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">initials</span><span class="p">[</span><span class="n">initial</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="k">print</span> <span class="n">initials</span>
-<span class="c"># outputs</span>
-<span class="c"># {&#39;a&#39;: 1, &#39;p&#39;: 1, &#39;b&#39;: 2}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">initials</span><span class="p">)</span>
+<span class="c1"># outputs</span>
+<span class="c1"># {&#39;a&#39;: 1, &#39;p&#39;: 1, &#39;b&#39;: 2}</span>
 </pre></div>
 
           
@@ -2252,7 +2251,7 @@ sets it to 0 upon initialization.</p>
         <div class="code go">
           <h4>Go</h4>
           
-            <div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+            <div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 

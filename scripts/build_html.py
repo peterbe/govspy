@@ -17,12 +17,9 @@ import jinja2
 
 
 _here = os.path.dirname(__file__)
-template_dir = os.path.join(_here, 'templates')
+template_dir = os.path.join(_here, "templates")
 
-env = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(template_dir),
-    autoescape=True
-)
+env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir), autoescape=True)
 
 
 class SnippetError(Exception):
@@ -30,7 +27,7 @@ class SnippetError(Exception):
 
 
 @click.command()
-@click.option('--out', '-o', help="defaults to stdout", default='dist/index.html')
+@click.option("--out", "-o", help="defaults to stdout", default="dist/index.html")
 def run(out):
     snippets = []
 
@@ -40,76 +37,69 @@ def run(out):
 
     for snippet_dir in _dirs():
         go_codes = []
-        for f in glob(os.path.join(snippet_dir, '*.go')):
-            go_codes.append(
-                (f, codecs.open(f, 'r', 'utf8').read())
-            )
+        for f in glob(os.path.join(snippet_dir, "*.go")):
+            go_codes.append((f, codecs.open(f, "r", "utf8").read()))
         if not go_codes:
-            print snippet_dir, "has no .go code"
+            print(snippet_dir, "has no .go code")
             continue
 
         py_codes = []
-        for f in glob(os.path.join(snippet_dir, '*.py')):
-            py_codes.append(
-                (f, codecs.open(f, 'r', 'utf8').read())
-            )
+        for f in glob(os.path.join(snippet_dir, "*.py")):
+            py_codes.append((f, codecs.open(f, "r", "utf8").read()))
         if not py_codes:
-            print snippet_dir, "has no .py code"
+            print(snippet_dir, "has no .py code")
             continue
 
         id = os.path.basename(snippet_dir)
-        if os.path.isfile(os.path.join(snippet_dir, 'title')):
-            title = open(os.path.join(snippet_dir, 'title')).read().strip()
+        if os.path.isfile(os.path.join(snippet_dir, "title")):
+            with open(os.path.join(snippet_dir, "title")) as f:
+                title = f.read().strip()
         else:
-            title = id.replace('_', ' ').title()
+            title = id.replace("_", " ").title()
 
         readme = None
-        for f in glob(os.path.join(snippet_dir, '*.md')):
+        for f in glob(os.path.join(snippet_dir, "*.md")):
             if readme is not None:
-                raise SnippetError('%s contains multiple .md files')
-            with codecs.open(f, 'r', 'utf-8') as reader:
+                raise SnippetError("%s contains multiple .md files")
+            with codecs.open(f, "r", "utf-8") as reader:
                 readme = special_markdown(reader.read())
-        snippets.append({
-            'id': id,
-            'title': title,
-            'readme': readme,
-            'go_codes': [
-                (
-                    filename,
-                    pygments.highlight(code, go_lexer, html_formatter)
-                )
-                for filename, code in go_codes
-            ],
-            'py_codes': [
-                (
-                    filename,
-                    pygments.highlight(code, py_lexer, html_formatter)
-                )
-                for filename, code in py_codes
-            ],
-        })
+        snippets.append(
+            {
+                "id": id,
+                "title": title,
+                "readme": readme,
+                "go_codes": [
+                    (filename, pygments.highlight(code, go_lexer, html_formatter))
+                    for filename, code in go_codes
+                ],
+                "py_codes": [
+                    (filename, pygments.highlight(code, py_lexer, html_formatter))
+                    for filename, code in py_codes
+                ],
+            }
+        )
 
-    template = env.get_template('build.html')
+    template = env.get_template("build.html")
     html = template.render(
         snippets=snippets,
-        highlight_css=html_formatter.get_style_defs('.highlight'),
-        bootstrap_css=env.get_template('bootstrap.min.css').render()
+        highlight_css=html_formatter.get_style_defs(".highlight"),
+        bootstrap_css=env.get_template("bootstrap.min.css").render(),
     )
     if out:
-        codecs.open(out, 'w', 'utf-8').write(html)
+        codecs.open(out, "w", "utf-8").write(html)
     else:
-        print html
+        print(html)
 
 
-_codesyntax_regex = re.compile('```(python|go)')
-_markdown_pre_regex = re.compile('```([^`]+)```')
+_codesyntax_regex = re.compile("```(python|go)")
+_markdown_pre_regex = re.compile("```([^`]+)```")
+
 
 def special_markdown(text):
-
     def _get_lexer(codesyntax):
-        if codesyntax == 'python':
+        if codesyntax == "python":
             return lexers.PythonLexer()
-        elif codesyntax == 'go':
+        elif codesyntax == "go":
             return lexers.GoLexer()
         elif codesyntax:
             raise NotImplementedError(codesyntax)
@@ -122,15 +112,17 @@ def special_markdown(text):
             codesyntax = _codesyntax_regex.findall(found)[0]
         except IndexError:
             codesyntax = None
-        found = _codesyntax_regex.sub('```', found)
+        found = _codesyntax_regex.sub("```", found)
         if codesyntax:
+
             def highlighter(m):
                 lexer = _get_lexer(codesyntax)
-                code = m.group().replace('```', '')
+                code = m.group().replace("```", "")
                 return pygments.highlight(code, lexer, HtmlFormatter())
+
             found = _markdown_pre_regex.sub(highlighter, found)
-        found = found.replace('```', '<pre>', 1)
-        found = found.replace('```', '</pre>')
+        found = found.replace("```", "<pre>", 1)
+        found = found.replace("```", "</pre>")
         return found
 
     text = _markdown_pre_regex.sub(matcher, text)
@@ -146,15 +138,16 @@ def xspecial_markdown(text):
 
     return md
 
+
 def _dirs():
     indexed = [
         x.strip()
-        for x in open('snippets/index.txt').read().splitlines()
-        if not x.strip().startswith('#')
+        for x in open("snippets/index.txt").read().splitlines()
+        if not x.strip().startswith("#")
     ]
     for name in indexed:  # because this sort order is important
-        yield os.path.join('snippets', name)
+        yield os.path.join("snippets", name)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run()
