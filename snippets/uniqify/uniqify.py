@@ -7,5 +7,6 @@ def uniqify(seq):
             unique.append(item)
     return unique
 
-items = ['B', 'B', 'E', 'Q', 'Q', 'Q']
-print uniqify(items)  # prints ['B', 'E', 'Q']
+
+items = ["B", "B", "E", "Q", "Q", "Q"]
+print(uniqify(items))  # prints ['B', 'E', 'Q']

@@ -20,9 +20,9 @@ Base = declarative_base()
 
 
 class Talk(Base):
-    __tablename__ = 'talks'
+    __tablename__ = "talks"
 
-    id = Column(Integer, Sequence('talks_id_seq'), primary_key=True)
+    id = Column(Integer, Sequence("talks_id_seq"), primary_key=True)
     topic = Column(String)
     when = Column(DateTime)
     tags = Column(postgresql.ARRAY(String))
@@ -30,32 +30,48 @@ class Talk(Base):
 
 
 def _random_topic():
-    return random.choice((
-        u'No talks added yet',
-        u"I'm working on a branch of django-mongokit that I "
-        "thought you'd like to know about.",
-        u'I want to learn Gaelic.',
-        u"I'm well, thank you.",
-        u' (Kaw uhn KEU-ra shin KAW-la root uh CHOO-nik mee uhn-royer?)',
-        u'Chah beh shin KEU-ra, sheh shin moe CHYEH-luh uh vah EEN-tchuh!',
-        u'STUH LUH-oom BRISS-kaht-chun goo MAWR',
-        u"Suas Leis a' Ghàidhlig! Up with Gaelic!",
-        u"Tha mi ag iarraidh briosgaid!",
-    ))
+    return random.choice(
+        (
+            "No talks added yet",
+            "I'm working on a branch of django-mongokit that I "
+            "thought you'd like to know about.",
+            "I want to learn Gaelic.",
+            "I'm well, thank you.",
+            " (Kaw uhn KEU-ra shin KAW-la root uh CHOO-nik mee uhn-royer?)",
+            "Chah beh shin KEU-ra, sheh shin moe CHYEH-luh uh vah EEN-tchuh!",
+            "STUH LUH-oom BRISS-kaht-chun goo MAWR",
+            "Suas Leis a' Ghàidhlig! Up with Gaelic!",
+            "Tha mi ag iarraidh briosgaid!",
+        )
+    )
 
 
 def _random_when():
-    return datetime.datetime(random.randint(2000, 2010),
-                             random.randint(1, 12),
-                             random.randint(1, 28),
-                             0, 0, 0)
+    return datetime.datetime(
+        random.randint(2000, 2010),
+        random.randint(1, 12),
+        random.randint(1, 28),
+        0,
+        0,
+        0,
+    )
 
 
 def _random_tags():
-    tags = [u'one', u'two', u'three', u'four', u'five', u'six',
-            u'seven', u'eight', u'nine', u'ten']
+    tags = [
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+    ]
     random.shuffle(tags)
-    return tags[:random.randint(0, 3)]
+    return tags[: random.randint(0, 3)]
 
 
 def _random_duration():
@@ -64,8 +80,7 @@ def _random_duration():
 
 def run():
     engine = create_engine(
-        'postgresql://peterbe:test123@localhost/fastestdb',
-        echo=False
+        "postgresql://peterbe:test123@localhost/fastestdb", echo=False
     )
 
     Session = sessionmaker(bind=engine)
@@ -81,7 +96,7 @@ def run():
             topic=_random_topic(),
             when=_random_when(),
             duration=_random_duration(),
-            tags=_random_tags()
+            tags=_random_tags(),
         )
         session.add(talk)
         talks.append(talk)
@@ -107,10 +122,11 @@ def run():
     session.commit()
     t3 = time.time()
 
-    print "insert", t1 - t0
-    print "edit", t2 - t1
-    print "delete", t3 - t2
-    print "TOTAL", t3 - t0
+    print("insert", t1 - t0)
+    print("edit", t2 - t1)
+    print("delete", t3 - t2)
+    print("TOTAL", t3 - t0)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     run()

@@ -1,4 +1,3 @@
-from __future__ import division
 from math import sqrt
 
 
@@ -13,5 +12,5 @@ class Point(object):
 
 p1 = Point(1, 3)
 p2 = Point(2, 4)
-print p1.distance(p2)  # 3.74165738677
-print p2.distance(p1)  # 3.74165738677
+print(p1.distance(p2))  # 3.74165738677
+print(p2.distance(p1))  # 3.74165738677

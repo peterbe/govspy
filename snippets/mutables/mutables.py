@@ -2,10 +2,10 @@ def upone(mutable, index):
     mutable[index] = mutable[index].upper()
 
 
-list = ['a', 'b', 'c']
-upone(list, 1)
-print list  # ['a', 'B', 'c']
+list_ = ["a", "b", "c"]
+upone(list_, 1)
+print(list_)  # ['a', 'B', 'c']
 
-dict = {'a': 'anders', 'b': 'bengt'}
-upone(dict, 'b')
-print dict  # {'a': 'anders', 'b': 'BENGT'}
+dict_ = {"a": "anders", "b": "bengt"}
+upone(dict_, "b")
+print(dict_)  # {'a': 'anders', 'b': 'BENGT'}

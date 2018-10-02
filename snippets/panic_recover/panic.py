@@ -1,4 +1,4 @@
 try:
-    raise Exception('Shit')
+    raise Exception("Shit")
 except Exception as e:
-    print "error was:", e
+    print("error was:", e)
