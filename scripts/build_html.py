@@ -98,7 +98,9 @@ def run(out, dry_run=False, check_built=False):
         # was created before.
         with open(out) as f:
             before = f.read()
-        if before.strip() != html.strip():
+        lines_before = [x.strip() for x in before.strip().splitlines() if x.strip()]
+        lines_html = [x.strip() for x in html.strip().splitlines() if x.strip()]
+        if lines_before != lines_html:
             import difflib
 
             print(
